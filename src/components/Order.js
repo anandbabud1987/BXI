@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 
-export default class Chef extends Component{
+export default class Order extends Component{
 
   static navigationOptions = {
     header: {

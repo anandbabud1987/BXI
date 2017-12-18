@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 
-export default class Home extends Component{
+export default class Serve extends Component{
 
   static navigationOptions = {
     header: {
@@ -27,7 +27,7 @@ export default class Home extends Component{
   render(){
     return(
 
-  
+
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
       <View accessible={true}>
       <StatusBar

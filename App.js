@@ -18,23 +18,35 @@ import {
 import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
 
 import Login from './src/components/Login';
-import Home from './src/components/Home';
-import Chef from './src/components/Chef';
+import Order from './src/components/Order';
+import Serve from './src/components/Serve';
 
 
 
 const MyApp = TabNavigator({
-  Home: {
-    screen: Home,
+  Order: {
+    screen: Order,
   },
-  Chef: {
-    screen: Chef,
+  Serve: {
+    screen: Serve,
   },
 }, {
   tabBarPosition: 'bottom',
   animationEnabled: true,
+  swipeEnabled:true,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: '#EEEEEE',
+    labelStyle: {
+      fontSize: 12,
+    },
+    tabStyle: {
+      width: 50,
+        height:30
+    },
+    style: {
+    backgroundColor: '#4183D7',
+    alignItems:'center'
+    },
   },
 });
 
