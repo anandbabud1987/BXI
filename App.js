@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   StatusBar,
   KeyboardAvoidingView
 } from 'react-native';
@@ -18,31 +19,30 @@ import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
 
 import Login from './src/components/Login';
 import Home from './src/components/Home';
+import Chef from './src/components/Chef';
 
 
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home'
-  };
-  render() {
-    return <Home/>;
-  }
-}
+const MyApp = TabNavigator({
+  Home: {
+    screen: Home,
+  },
+  Chef: {
+    screen: Chef,
+  },
+}, {
+  tabBarPosition: 'bottom',
+  animationEnabled: true,
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
+  },
+});
 
-class LoginScreen extends React.Component {
-  static navigationOptions = {
-    title: ''
-  };
-  render() {
-    return <Login/>;
-  }
-}
 
 const  BixiNavigator= StackNavigator(
   {
-  Login: { screen: LoginScreen },
-  Home: { screen: HomeScreen }
+  Login: { screen: Login },
+  Tabs: { screen: MyApp }
   }
   ,
   {

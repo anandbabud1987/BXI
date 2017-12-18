@@ -45,7 +45,7 @@ export default class Login extends Component{
   }
 
   render(){
-  const {navigate}=this.props.navigation;
+
     return(
 
 
@@ -79,7 +79,7 @@ export default class Login extends Component{
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
           />
-          <TouchableOpacity style={styles.button}  onPress={() => navigate('Chat')}>
+          <TouchableOpacity style={styles.button}  onPress={() => this.props.navigation.navigate('Tabs')}>
             <Text style={styles.text}  >Login</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={()=>this.reset()}>
