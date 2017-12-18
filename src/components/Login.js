@@ -12,9 +12,40 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 
+import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
+
 export default class Login extends Component{
 
+  static navigationOptions = {
+    title: 'Login',
+  }
+
+  login(){
+
+    console.log('clicked here');
+
+
+  }
+  //const navigate=this.props.navigate;
+  reset(){
+
+    console.log('Reset');
+    this.setState({username: '',
+            password:''});
+  }
+
+  constructor(props){
+    super(props);
+    this.state = {
+      username: '' ,
+      password:''
+    };
+
+
+  }
+
   render(){
+  const {navigate}=this.props.navigation;
     return(
 
 
@@ -35,6 +66,8 @@ export default class Login extends Component{
         autoCapitalize='none'
         autoCorrect={false}
         maxLength={64}
+        onChangeText={(username) => this.setState({username})}
+        value={this.state.username}
         />
         <TextInput style={styles.textinput}
           placeholder="Password"
@@ -43,9 +76,14 @@ export default class Login extends Component{
           autoCorrect={false}
           secureTextEntry={true}
           maxLength={15}
+          onChangeText={(password) => this.setState({password})}
+          value={this.state.password}
           />
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Login</Text>
+          <TouchableOpacity style={styles.button}  onPress={() => navigate('Chat')}>
+            <Text style={styles.text}  >Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={()=>this.reset()}>
+            <Text style={styles.text} >Reset</Text>
           </TouchableOpacity>
 
           <View style={{flex: 1, flexDirection: 'row'}}>

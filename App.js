@@ -9,49 +9,61 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar,
+  KeyboardAvoidingView
 } from 'react-native';
+
+import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
+
 import Login from './src/components/Login';
+import Home from './src/components/Home';
 
 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home'
+  };
+  render() {
+    return <Home/>;
+  }
+}
 
-/*GoogleSignin.configure({
-  iosClientId: "274250708856-6gej7ij87ckpemn7gbn3vaodmcv35pid.apps.googleusercontent.com", // only for iOS
-})
-.then(() => {
-  // you can now call currentUserAsync()
-});
-*/
+class LoginScreen extends React.Component {
+  static navigationOptions = {
+    title: ''
+  };
+  render() {
+    return <Login/>;
+  }
+}
+
+const  BixiNavigator= StackNavigator(
+  {
+  Login: { screen: LoginScreen },
+  Home: { screen: HomeScreen }
+  }
+  ,
+  {
+    headerMode: 'none',
+    mode: 'modal',
+  }
+);
 export default class App extends Component<{}> {
   render() {
     return (
-      <Login/>
+
+      <BixiNavigator/>
+
+
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+const styles=StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'#FFFAFA',
+  }
 });
