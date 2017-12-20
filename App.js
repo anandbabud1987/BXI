@@ -43,7 +43,8 @@ const tabBarOptions = Platform.OS === 'ios' ?
     fontSize: 12,
   },
     style:{
-      backgroundColor:'white'
+      backgroundColor:'white',
+      height:80
     }
   }
 
