@@ -13,15 +13,17 @@ import {
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-export default class Serve extends Component{
+export default class Profile extends Component{
 
   static navigationOptions = {
-     tabBarLabel: 'Serve',
+     tabBarLabel: 'Profile',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="fire" size={30} color="#900" />
+       <Icon name="user-o" size={30} color="#900" />
      ),
    };
+
+
   login(){
 
   }
@@ -37,7 +39,7 @@ export default class Serve extends Component{
     />
 
     <FadeInView>
-        <Text>Serve </Text>
+        <Text>Profile </Text>
       </FadeInView>
 
       </View>

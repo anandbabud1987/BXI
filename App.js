@@ -20,8 +20,32 @@ import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
 import Login from './src/components/Login';
 import Order from './src/components/Order';
 import Serve from './src/components/Serve';
+import Profile from './src/components/Profile';
 
 
+const swipeEnabled=Platform.OS==='ios'?true:false;
+
+const tabBarOptions = Platform.OS === 'ios' ?
+  {
+    // iOS tabBarOptions
+    showLabel: true,
+    labelStyle: {
+    fontSize: 12,
+  },
+    style:{
+      backgroundColor:'white'
+    }
+  } : {
+    // Android tabBarOptions
+    showIcon: true,
+    showLabel: false,
+    labelStyle: {
+    fontSize: 12,
+  },
+    style:{
+      backgroundColor:'white'
+    }
+  }
 
 const MyApp = TabNavigator({
   Order: {
@@ -30,24 +54,14 @@ const MyApp = TabNavigator({
   Serve: {
     screen: Serve,
   },
+  Profile: {
+    screen: Profile,
+  },
 }, {
   tabBarPosition: 'bottom',
-  animationEnabled: true,
-  swipeEnabled:true,
-  tabBarOptions: {
-    activeTintColor: '#EEEEEE',
-    labelStyle: {
-      fontSize: 12,
-    },
-    tabStyle: {
-      width: 50,
-        height:30
-    },
-    style: {
-    backgroundColor: '#4183D7',
-    alignItems:'center'
-    },
-  },
+  //animationEnabled: true,
+  swipeEnabled:swipeEnabled,
+  tabBarOptions: tabBarOptions
 });
 
 

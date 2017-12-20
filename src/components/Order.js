@@ -11,15 +11,17 @@ import {
   Linking
 } from 'react-native';
 import FadeInView from './FadeInView';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 export default class Order extends Component{
 
   static navigationOptions = {
-    header: {
-      visible: false,
-      header:'Home'
-    }
-  };
+     tabBarLabel: 'Order',
+     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+     tabBarIcon: ({ tintColor }) => (
+       <Icon name="cutlery" size={30} color="#900" />
+     ),
+   };
   login(){
 
   }
