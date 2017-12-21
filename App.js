@@ -29,9 +29,15 @@ const tabBarOptions = Platform.OS === 'ios' ?
   {
     // iOS tabBarOptions
     showLabel: true,
+    iconStyle:{
+      width:50,
+      height:50
+    },
+    activeTintColor: '#e91e63',
     labelStyle: {
-    fontSize: 12,
-  },
+              fontSize: 12,
+              color:'black'
+        },
     style:{
       backgroundColor:'#ecf0f1'
     }
@@ -39,9 +45,15 @@ const tabBarOptions = Platform.OS === 'ios' ?
     // Android tabBarOptions
     showIcon: true,
     showLabel: false,
+    activeTintColor: '#e91e63',
+    iconStyle:{
+      width:50,
+      height:40
+    },
     labelStyle: {
-    fontSize: 12,
-  },
+          fontSize: 12,
+          color:'black'
+    },
     style:{
       backgroundColor:'#ecf0f1',
       //sheight:80
