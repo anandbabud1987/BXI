@@ -33,7 +33,7 @@ const tabBarOptions = Platform.OS === 'ios' ?
     fontSize: 12,
   },
     style:{
-      backgroundColor:'white'
+      backgroundColor:'#ecf0f1'
     }
   } : {
     // Android tabBarOptions
@@ -43,8 +43,8 @@ const tabBarOptions = Platform.OS === 'ios' ?
     fontSize: 12,
   },
     style:{
-      backgroundColor:'white',
-      height:80
+      backgroundColor:'#ecf0f1',
+      //sheight:80
     }
   }
 

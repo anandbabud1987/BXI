@@ -25,9 +25,9 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+        new  MapsPackage(),
           new MainReactPackage(),
-            new VectorIconsPackage(),
-            new  MapsPackage()
+            new VectorIconsPackage()
       );
     }
 

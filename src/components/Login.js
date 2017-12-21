@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {
+  ScrollView,
   View,
   Text,
   TextInput,
@@ -8,7 +9,8 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Linking
+  Linking,
+  Image
 } from 'react-native';
 import FadeInView from './FadeInView';
 
@@ -50,13 +52,19 @@ export default class Login extends Component{
 
 
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-      <View accessible={true}>
+      <ScrollView accessible={true} showsVerticalScrollIndicator={false}>
       <StatusBar
     barStyle="light-content"
     />
 
     <FadeInView>
-    <Text style={styles.loginTitle}>BiXi</Text>
+      <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center'}}>
+    <Image
+         style={{width:50,height:50}}
+         source={require('../assets/bixi-1024.png')}
+       />
+      <Text style={styles.loginTitle}>BiXi</Text>
+      </View>
     <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
       <TextInput style={styles.textinput}
@@ -98,7 +106,7 @@ export default class Login extends Component{
           </View>
       </FadeInView>
 
-      </View>
+      </ScrollView>
       </KeyboardAvoidingView>
     );
   }
@@ -110,6 +118,16 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding:20
+  },
+  image:{
+    flex:1,
+    backgroundColor:'#FFFAFA',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //padding:20,
+    width:50,
+    height:50
+
   },
   button: {
    alignItems: 'center',
@@ -139,7 +157,7 @@ const styles=StyleSheet.create({
     textShadowColor:'#2c3e50',
      color:'#228b22',
      textAlign:'center',
-     fontSize:110,
+     fontSize:50,
      fontWeight:'bold',
      textShadowRadius:10
   },
@@ -147,7 +165,7 @@ const styles=StyleSheet.create({
     textShadowColor:'#27ae60',
      color:'#c0392b',
      textAlign:'center',
-     fontSize:25,
+     fontSize:10,
      marginBottom:30,
      fontWeight:'bold'
   },

@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Linking
+  Linking,
+  Dimensions
 } from 'react-native';
 import FadeInView from './FadeInView';
 import MapView from 'react-native-maps';
@@ -30,22 +31,23 @@ export default class Order extends Component{
   }
 
   render(){
+
     return(
 
 
-      <View accessible={true} style={styles.container}>
+      <View style={styles.container}>
 
 
 
     <MapView
-    style={ styles.map }
-initialRegion={{
-  latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-}}
-/>
+              style={ styles.map }
+              initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+          }}
+          />
 
 
       </View>
@@ -56,7 +58,7 @@ initialRegion={{
   }
 }
 
-
+var { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   fadeIn:{
@@ -65,19 +67,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#bdc3c7',
   },
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
+      flex: 1,
+    },
   map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
+      flex: 1,
+      width: width,
+      height: height,
+    },
 });
