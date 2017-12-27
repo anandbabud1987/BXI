@@ -10,15 +10,13 @@ import {
   KeyboardAvoidingView,
   Platform,
   Linking,
-  Vibration,
   Image
 } from 'react-native';
 import FadeInView from './FadeInView';
 
 import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
-const DURATION = 500
-const PATTERN = [1000, 2000, 3000]
-export default class Login extends Component{
+
+export default class Register extends Component{
 
   static navigationOptions = {
     title: 'Login',
@@ -27,12 +25,7 @@ export default class Login extends Component{
   login(){
 
     console.log('clicked here');
-    if(this.state.username==='' || this.state.password===''){
-      alert('Username or Password is missing')
-      Vibration.vibrate(DURATION);
-      return false;
-    }
-    this.props.navigation.navigate('Tabs')
+
 
   }
   //const navigate=this.props.navigate;
@@ -65,7 +58,7 @@ export default class Login extends Component{
     />
 
     <FadeInView>
-      <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
+      <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center'}}>
     <Image
          style={{width:50,height:50}}
          source={require('../assets/bixi-1024.png')}
@@ -75,7 +68,7 @@ export default class Login extends Component{
     <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
       <TextInput style={styles.textinput}
-        placeholder="Username or Email"
+        placeholder="Email"
         placeholderTextColor='#34495e'
         keyboardType='email-address'
         autoCapitalize='none'
@@ -94,8 +87,8 @@ export default class Login extends Component{
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
           />
-          <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-            <Text style={styles.text}  >Login</Text>
+          <TouchableOpacity style={styles.button}  onPress={() => this.props.navigation.navigate('Tabs')}>
+            <Text style={styles.text}  >Register</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={()=>this.reset()}>
             <Text style={styles.text} >Reset</Text>
@@ -103,7 +96,7 @@ export default class Login extends Component{
 
           <View style={{flex: 1, flexDirection: 'row'}}>
           <Text style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-end',color:'red'}}
-            onPress={() => Linking.openURL('http://google.com')}>
+            onPress={() => this.props.navigation.navigate('Register')}>
           Register
           </Text>
           <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'red'}}
@@ -124,7 +117,7 @@ const styles=StyleSheet.create({
     backgroundColor:'#FFFAFA',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:20,
+    padding:20
   },
   image:{
     flex:1,

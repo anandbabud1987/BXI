@@ -15,9 +15,29 @@ import FadeInView from './FadeInView';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
+const {width,height}=Dimensions.get('window');
+const SCREEN_WIDTH=width;
+const SCREEN_HEIGHT=height;
+const ASPECT_RATIO=width/height;
+const LATITUDE_DELTA=0.0922;
+const LONGITUDE_DELTA=LATITUDE_DELTA * ASPECT_RATIO;
 export default class Order extends Component{
   constructor() {
      super();
+     this.state={
+       initialPosition:{
+         latitude: 0,
+         longitude:0,
+         latitudeDelta: 0,
+         longitudeDelta: 0,
+       },
+       markerPosition:{
+         latitude: 0,
+         longitude:0,
+
+       }
+
+     }
    }
   static navigationOptions = {
      tabBarLabel: 'Order',
@@ -29,36 +49,44 @@ export default class Order extends Component{
   login(){
 
   }
+  watchID:?number=null;
+  componentDidMount(){
+    navigator.geolocation.getCurrentPosition((position)=>{
+
+        var lat=parseFloat(position.coords.latitude);
+        var longt=parseFloat(position.coords.longitude);
+
+        var initialRegion={
+          latitude: lat,
+          longitude:longt,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        }
+        this.setState({initialPosition:initialRegion});
+        this.setState({markerPosition:initialRegion});
+    },(error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+
+    );
+  }
 
   render(){
 
     return(
+        <View style={styles.container}>
 
+          <MapView style={ styles.map } region={this.state.initialPosition} >
+              <MapView.Marker coordinate={this.state.markerPosition}>
+                  
+                </MapView.Marker>
 
-      <View style={styles.container}>
-
-
-
-    <MapView
-              style={ styles.map }
-              initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-          }}
-          />
-
-
-      </View>
-
-
-
+              </MapView>
+          </View>
     );
   }
 }
 
-var { width, height } = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
   fadeIn:{
@@ -66,12 +94,31 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor:'#bdc3c7',
   },
+  radius:{
+    width: width,
+    height: height
+  },
+  marker:{
+    width: width,
+    height: height,
+
+  },
   container: {
       flex: 1,
+      top:0,
+      bottom:0,
+      right:0,
+      left:0,
+      justifyContent:'flex-end',
+      alignItems:'center',
+      position:'absolute'
     },
   map: {
-      flex: 1,
-      width: width,
-      height: height,
+    flex: 1,
+    top:0,
+    bottom:0,
+    right:0,
+    left:0,
+    position:'absolute'
     },
 });

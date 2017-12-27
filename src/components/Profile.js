@@ -39,7 +39,7 @@ export default class Profile extends Component{
     />
 
     <FadeInView>
-        <Text>Profile </Text>
+        <Text>Profile6666 </Text>
       </FadeInView>
 
       </View>
