@@ -12,7 +12,7 @@ import {
   Dimensions
 } from 'react-native';
 import FadeInView from './FadeInView';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const {width,height}=Dimensions.get('window');
@@ -21,6 +21,7 @@ const SCREEN_HEIGHT=height;
 const ASPECT_RATIO=width/height;
 const LATITUDE_DELTA=0.0922;
 const LONGITUDE_DELTA=LATITUDE_DELTA * ASPECT_RATIO;
+var mapStyle=require('../jsons/mapstyle.json');
 export default class Order extends Component{
   constructor() {
      super();
@@ -75,9 +76,9 @@ export default class Order extends Component{
     return(
         <View style={styles.container}>
 
-          <MapView style={ styles.map } region={this.state.initialPosition} >
+          <MapView style={styles.map} customMapStyle={mapStyle} region={this.state.initialPosition} provider={PROVIDER_GOOGLE}>
               <MapView.Marker coordinate={this.state.markerPosition}>
-                  
+
                 </MapView.Marker>
 
               </MapView>
