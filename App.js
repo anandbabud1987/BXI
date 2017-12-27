@@ -21,6 +21,8 @@ import Login from './src/components/Login';
 import Order from './src/components/Order';
 import Serve from './src/components/Serve';
 import Profile from './src/components/Profile';
+import Chat from './src/components/Chat';
+import FoodType from './src/components/FoodType';
 
 
 const swipeEnabled=Platform.OS==='ios'?true:false;
@@ -39,7 +41,7 @@ const tabBarOptions = Platform.OS === 'ios' ?
               color:'black'
         },
     style:{
-      backgroundColor:'#ecf0f1'
+      backgroundColor:'white'
     }
   } : {
     // Android tabBarOptions
@@ -55,7 +57,7 @@ const tabBarOptions = Platform.OS === 'ios' ?
           color:'black'
     },
     style:{
-      backgroundColor:'#ecf0f1',
+      backgroundColor:'white',
       //sheight:80
     }
   }
@@ -67,9 +69,12 @@ const MyApp = TabNavigator({
   Serve: {
     screen: Serve,
   },
+  Chat: {
+    screen: Chat,
+  },
   Profile: {
     screen: Profile,
-  },
+  }
 }, {
   tabBarPosition: 'bottom',
   //animationEnabled: true,
@@ -81,7 +86,8 @@ const MyApp = TabNavigator({
 const  BixiNavigator= StackNavigator(
   {
   Login: { screen: Login },
-  Tabs: { screen: MyApp }
+  Tabs: { screen: MyApp },
+  FoodType:{screen:FoodType}
   }
   ,
   {

@@ -8,23 +8,24 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Linking,
-  Button
+  Linking
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-export default class Serve extends Component{
+export default class Chat extends Component{
 
   static navigationOptions = {
-     tabBarLabel: 'Cook',
+     tabBarLabel: 'Chat',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="fire" size={30} color="#228b22" />
+       <Icon name="comments" size={30} color="#228b22" />
      ),
    };
-  login(val){
-      this.props.navigation.navigate(val);
+
+
+  login(){
+
   }
 
   render(){
@@ -38,15 +39,7 @@ export default class Serve extends Component{
     />
 
     <FadeInView>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('FoodType')}>
-      <Text style={styles.text}  > <Icon name="clock-o" size={20} color="white" />  Breakfast</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('lunch')}>
-      <Text style={styles.text}  ><Icon name="sun-o" size={20} color="white" />  Lunch</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('dinner')}>
-      <Text style={styles.text}  > <Icon name="moon-o" size={20} color="white" />  Dinner</Text>
-    </TouchableOpacity>
+        <Text>Profile6666 </Text>
       </FadeInView>
 
       </View>

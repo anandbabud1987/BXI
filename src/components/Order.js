@@ -41,7 +41,7 @@ export default class Order extends Component{
      }
    }
   static navigationOptions = {
-     tabBarLabel: 'Order',
+     tabBarLabel: 'Eat',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
        <Icon name="cutlery" size={30} color="#228b22" />
@@ -82,6 +82,7 @@ export default class Order extends Component{
                 </MapView.Marker>
 
               </MapView>
+              <TextInput style={styles.textinput} placeholder="Search"/>
           </View>
     );
   }
@@ -121,5 +122,14 @@ const styles = StyleSheet.create({
     right:0,
     left:0,
     position:'absolute'
+    },
+    textinput:{
+      backgroundColor:'#F5F5F5',
+      width:300,
+      height:45,
+      textAlign:'center',
+      marginBottom:35,
+      borderRadius:10,
+      borderColor:'#d35400'
     },
 });

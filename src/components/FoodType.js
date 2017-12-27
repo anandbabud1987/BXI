@@ -14,7 +14,7 @@ import {
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-export default class Serve extends Component{
+export default class FoodType extends Component{
 
   static navigationOptions = {
      tabBarLabel: 'Cook',
@@ -23,8 +23,8 @@ export default class Serve extends Component{
        <Icon name="fire" size={30} color="#228b22" />
      ),
    };
-  login(val){
-      this.props.navigation.navigate(val);
+  login(){
+
   }
 
   render(){
@@ -38,14 +38,12 @@ export default class Serve extends Component{
     />
 
     <FadeInView>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('FoodType')}>
-      <Text style={styles.text}  > <Icon name="clock-o" size={20} color="white" />  Breakfast</Text>
+    <Text style={{padding:20,fontSize:40}}>What you are going to cook?</Text>
+    <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
+      <Text style={styles.text}  > <Icon name="leaf" size={20} color="white" />  Veg</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('lunch')}>
-      <Text style={styles.text}  ><Icon name="sun-o" size={20} color="white" />  Lunch</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login('dinner')}>
-      <Text style={styles.text}  > <Icon name="moon-o" size={20} color="white" />  Dinner</Text>
+    <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
+      <Text style={styles.text}  ><Icon name="twitter" size={20} color="white" />  Non-Veg</Text>
     </TouchableOpacity>
       </FadeInView>
 
