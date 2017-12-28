@@ -44,7 +44,7 @@ export default class Order extends Component{
      tabBarLabel: 'Eat',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="cutlery" size={30} color="#228b22" />
+       <Icon name="cutlery" size={30} color="silver" />
      ),
    };
   login(){

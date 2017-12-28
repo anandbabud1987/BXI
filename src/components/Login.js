@@ -14,10 +14,13 @@ import {
   Image
 } from 'react-native';
 import FadeInView from './FadeInView';
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+
 
 import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
-const DURATION = 500
-const PATTERN = [1000, 2000, 3000]
+const DURATION = 500;
+const PATTERN = [1000, 2000, 3000];
+const user = GoogleSignin.currentUser();
 export default class Login extends Component{
 
   static navigationOptions = {
@@ -32,7 +35,7 @@ export default class Login extends Component{
       Vibration.vibrate(DURATION);
       return false;
     }
-    this.props.navigation.navigate('Tabs')
+    this.props.navigation.navigate('Tabs');
 
   }
   //const navigate=this.props.navigate;
@@ -52,8 +55,42 @@ export default class Login extends Component{
 
 
   }
+  _signIn(){
+    GoogleSignin.signIn()
+          .then((user) => {
+            alert(user);
+            this.setState({user: user});
+            this.props.navigation.navigate('Tabs')
+          })
+          .catch((err) => {
+            console.log('WRONG SIGNIN', err);
+          })
+          .done();
+}
 
+_signOut(){
+  GoogleSignin.signOut()
+.then(() => {
+  console.log('out');
+})
+.catch((err) => {
+
+});
+}
+
+  componentDidMount(){
+    GoogleSignin.configure({
+  iosClientId: "160848147756-5qu10ijjibbm08u3qin6m5spc30sbg3c.apps.googleusercontent.com", // only for iOS
+})
+.then(() => {
+  GoogleSignin.currentUserAsync().then((user) => {
+      console.log('USER', user);
+      this.setState({user: user});
+    }).done();
+});
+  }
   render(){
+
 
     return(
 
@@ -100,6 +137,12 @@ export default class Login extends Component{
           <TouchableOpacity style={styles.button} onPress={()=>this.reset()}>
             <Text style={styles.text} >Reset</Text>
           </TouchableOpacity>
+
+          <GoogleSigninButton
+    style={{width: 48, height: 48}}
+    size={GoogleSigninButton.Size.Icon}
+    color={GoogleSigninButton.Color.Dark}
+    onPress={this._signIn.bind(this)}/>
 
           <View style={{flex: 1, flexDirection: 'row'}}>
           <Text style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-end',color:'red'}}

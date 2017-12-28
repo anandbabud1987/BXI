@@ -38,12 +38,12 @@ export default class FoodType extends Component{
     />
 
     <FadeInView>
-    <Text style={{padding:20,fontSize:40}}>What you are going to cook?</Text>
+    <Text style={{padding:20,fontSize:25}}>What you are going to cook?</Text>
     <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-      <Text style={styles.text}  > <Icon name="leaf" size={20} color="white" />  Veg</Text>
+      <Text style={styles.text}  > <Icon name="circle" size={20} color="#2ecc71" />  Veg</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-      <Text style={styles.text}  ><Icon name="twitter" size={20} color="white" />  Non-Veg</Text>
+      <Text style={styles.text}  ><Icon name="circle" size={20} color="#c0392b" />  Non-Veg</Text>
     </TouchableOpacity>
       </FadeInView>
 
