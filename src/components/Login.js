@@ -58,7 +58,7 @@ export default class Login extends Component{
   _signIn(){
     GoogleSignin.signIn()
           .then((user) => {
-            alert(user);
+            console.log(user);
             this.setState({user: user});
             this.props.navigation.navigate('Tabs')
           })
@@ -69,25 +69,27 @@ export default class Login extends Component{
 }
 
 _signOut(){
-  GoogleSignin.signOut()
-.then(() => {
-  console.log('out');
-})
-.catch((err) => {
-
-});
+      GoogleSignin.signOut()
+            .then(() => {
+              console.log('out');
+            })
+            .catch((err) => {
+              console.error("Signout Error:"+err)
+      });
 }
 
   componentDidMount(){
     GoogleSignin.configure({
-  iosClientId: "160848147756-5qu10ijjibbm08u3qin6m5spc30sbg3c.apps.googleusercontent.com", // only for iOS
-})
-.then(() => {
-  GoogleSignin.currentUserAsync().then((user) => {
-      console.log('USER', user);
-      this.setState({user: user});
-    }).done();
-});
+            iosClientId: "160848147756-5qu10ijjibbm08u3qin6m5spc30sbg3c.apps.googleusercontent.com", // only for iOS
+            webClientId: "160848147756-fqp363psltrsapsf0bhb43fge5n59goc.apps.googleusercontent.com", //only for android
+            forceConsentPrompt: false
+          })
+          .then(() => {
+            GoogleSignin.currentUserAsync().then((user) => {
+                console.log('USER', user);
+                this.setState({user: user});
+              }).done();
+          });
   }
   render(){
 
@@ -98,8 +100,8 @@ _signOut(){
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
       <ScrollView accessible={true} showsVerticalScrollIndicator={false}>
       <StatusBar
-    barStyle="light-content"
-    />
+        barStyle="light-content"
+        />
 
     <FadeInView>
       <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
@@ -139,11 +141,14 @@ _signOut(){
           </TouchableOpacity>
 
           <GoogleSigninButton
-    style={{width: 48, height: 48}}
-    size={GoogleSigninButton.Size.Icon}
-    color={GoogleSigninButton.Color.Dark}
-    onPress={this._signIn.bind(this)}/>
-
+              style={{width: 312, height: 48}}
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={this._signIn.bind(this)}
+          />
+          <TouchableOpacity style={styles.button} onPress={this._signOut.bind(this)}>
+            <Text style={styles.text} >Signout</Text>
+          </TouchableOpacity>
           <View style={{flex: 1, flexDirection: 'row'}}>
           <Text style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-end',color:'red'}}
             onPress={() => Linking.openURL('http://google.com')}>
