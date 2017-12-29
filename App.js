@@ -23,6 +23,7 @@ import Serve from './src/components/Serve';
 import Profile from './src/components/Profile';
 import Chat from './src/components/Chat';
 import FoodType from './src/components/FoodType';
+import SigninWithGF from './src/components/SigninWithGF';
 
 
 const swipeEnabled=Platform.OS==='ios'?true:false;
@@ -85,6 +86,7 @@ const MyApp = TabNavigator({
 
 const  BixiNavigator= StackNavigator(
   {
+  SigninWithGF:{screen:SigninWithGF},
   Login: { screen: Login },
   Tabs: { screen: MyApp },
   FoodType:{screen:FoodType}
