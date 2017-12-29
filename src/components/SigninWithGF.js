@@ -70,7 +70,7 @@ _signOut(){
 
             <View style={styles.container}>
                 <GoogleSigninButton
-                    style={{width: 312, height: 48,padding:20,marginBottom:25}}
+                    style={{width: 200, height: 45,padding:20,marginBottom:25}}
                     size={GoogleSigninButton.Size.Wide}
                     color={GoogleSigninButton.Color.Light}
                     onPress={this._signIn.bind(this)}
