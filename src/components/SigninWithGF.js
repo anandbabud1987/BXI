@@ -3,6 +3,12 @@ import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,Stat
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import styles from '../styles';
 import FadeInView from './FadeInView';
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken
+} = FBSDK;
+
 
 const user = GoogleSignin.currentUser();
 export default class SigninWithGF extends Component{
@@ -63,16 +69,31 @@ _signOut(){
             <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
             <View style={styles.container}>
-                        <GoogleSigninButton
-                            style={{width: 312, height: 48,padding:20,marginBottom:25}}
-                            size={GoogleSigninButton.Size.Wide}
-                            color={GoogleSigninButton.Color.Dark}
-                            onPress={this._signIn.bind(this)}
-                        />
-
-                <TouchableOpacity style={styles.button} onPress={this._signOut.bind(this)}>
-                  <Text style={styles.text} >Signout</Text>
-                </TouchableOpacity>
+                <GoogleSigninButton
+                    style={{width: 312, height: 48,padding:20,marginBottom:25}}
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
+                    onPress={this._signIn.bind(this)}
+                />
+                <LoginButton
+                   publishPermissions={["publish_actions"]}
+                   onLoginFinished={
+                     (error, result) => {
+                       if (error) {
+                         alert("login has error: " + result.error);
+                       } else if (result.isCancelled) {
+                         alert("login is cancelled.");
+                       } else {
+                         AccessToken.getCurrentAccessToken().then(
+                           (data) => {
+                             console.log("Facebook accessToken"+data.accessToken.toString());
+                               this.props.navigation.navigate('Tabs')
+                           }
+                         )
+                       }
+                     }
+                   }
+                   onLogoutFinished={() => alert("logout.")}/>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                 <Text style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-end',color:'red'}}
                   onPress={() => (  this.props.navigation.navigate('Login'))}>

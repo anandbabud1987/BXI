@@ -15,11 +15,14 @@
 @import Firebase;
 @import GoogleSignIn;
 #import <RNGoogleSignin/RNGoogleSignin.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
   [GMSServices provideAPIKey:@"AIzaSyAv8fpjGlKN8qgAw7oknb7f_P76Fl-x1gs"];
   NSURL *jsCodeLocation;
 
@@ -41,7 +44,16 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   
-  return [RNGoogleSignin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+  return [RNGoogleSignin application:application openURL:url sourceApplication:sourceApplication annotation:annotation]
+  || [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                    openURL:url
+                                          sourceApplication:sourceApplication
+                                                 annotation:annotation];
 }
+  - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
+  }
+  
+
 
 @end
