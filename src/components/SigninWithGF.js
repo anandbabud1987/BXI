@@ -1,19 +1,27 @@
 import React,{Component} from 'react';
 import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,StatusBar,Image,Linking} from 'react-native';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-import styles from '../styles';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import styles from '../SigninWithGFStyle';
 import FadeInView from './FadeInView';
 const FBSDK = require('react-native-fbsdk');
 const {
-  LoginButton,
+  LoginManager,
   AccessToken
 } = FBSDK;
 
 
 const user = GoogleSignin.currentUser();
 export default class SigninWithGF extends Component{
-
-  _signIn(){
+  constructor(props){
+    super(props);
+  }
+  static navigationOptions = {
+     title: 'BiXi',
+     headerStyle:styles.signinTitle,
+     headerTitleStyle:styles.headerTitleStyle,
+   }
+  _signInGoogle(){
     GoogleSignin.signIn()
           .then((user) => {
             console.log(user);
@@ -24,6 +32,35 @@ export default class SigninWithGF extends Component{
             console.log('WRONG SIGNIN', err);
           })
           .done();
+}
+
+_handleFBLogout(){
+  LoginManager.logout().then(
+    () => {
+      console.log('FB Logged out');
+    }
+  )
+  .catch((err)=>{
+    console.log("Facebook logout Error:"+err);
+  });
+}
+
+_signInFaceBook(){
+  LoginManager.logInWithReadPermissions(['public_profile','email','user_location','user_birthday']).then(
+  function(result) {
+    console.log(result);
+    if (result.isCancelled) {
+      console.log('Login cancelled');
+    } else {
+      console.log('Login success with permissions: '
+        +result.grantedPermissions.toString());
+        
+    }
+  },
+  function(error) {
+    console.log('Login fail with error: ' + error);
+  }
+);
 }
 
 _signOut(){
@@ -62,46 +99,23 @@ _signOut(){
     <FadeInView>
               <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
             <Image
-                 style={{width:50,height:50}}
+                 style={{width:75,height:75}}
                  source={require('../assets/bixi-1024.png')}
                />
               </View>
             <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
             <View style={styles.container}>
-                <GoogleSigninButton
-                    style={{width: 200, height: 45,padding:20,marginBottom:25}}
-                    size={GoogleSigninButton.Size.Wide}
-                    color={GoogleSigninButton.Color.Light}
-                    onPress={this._signIn.bind(this)}
-                />
-                <LoginButton
-                   publishPermissions={["publish_actions"]}
-                   onLoginFinished={
-                     (error, result) => {
-                       if (error) {
-                         alert("login has error: " + result.error);
-                       } else if (result.isCancelled) {
-                         alert("login is cancelled.");
-                       } else {
-                         AccessToken.getCurrentAccessToken().then(
-                           (data) => {
-                             console.log("Facebook accessToken"+data.accessToken.toString());
-                               this.props.navigation.navigate('Tabs')
-                           }
-                         )
-                       }
-                     }
-                   }
-                   onLogoutFinished={() => alert("logout.")}/>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                <Text style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-end',color:'red'}}
+                <TouchableOpacity style={styles.button}  onPress={this._signInGoogle.bind(this)}>
+                  <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook()}>
+                  <Text style={styles.buttonText}  ><Icon name="facebook-square" size={25} color="#3b5999" />  Sign in with Facebook</Text>
+                </TouchableOpacity>
+                <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
+                <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white'}}
                   onPress={() => (  this.props.navigation.navigate('Login'))}>
                 Sign-In
-                </Text>
-                <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'red'}}
-                  onPress={() => Linking.openURL('http://google.com')}>
-                Register
                 </Text>
                 </View>
                 </View>

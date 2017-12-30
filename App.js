@@ -93,7 +93,7 @@ const  BixiNavigator= StackNavigator(
   }
   ,
   {
-    headerMode: 'none',
+    headerMode: 'float',
     mode: 'modal',
   }
 );
