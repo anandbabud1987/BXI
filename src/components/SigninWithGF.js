@@ -7,6 +7,7 @@ import FadeInView from './FadeInView';
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager,
+  LoginButton,
   AccessToken
 } = FBSDK;
 
@@ -47,19 +48,17 @@ _handleFBLogout(){
 
 _signInFaceBook(){
   LoginManager.logInWithReadPermissions(['public_profile','email','user_location','user_birthday']).then(
-  function(result) {
-    console.log(result);
-    if (result.isCancelled) {
-      console.log('Login cancelled');
-    } else {
-      console.log('Login success with permissions: '
-        +result.grantedPermissions.toString());
-        
-    }
-  },
-  function(error) {
-    console.log('Login fail with error: ' + error);
-  }
+  ((result)=>{
+      console.log(result);
+      if(result.isCancelled){
+
+      }
+      else{
+        console.log();
+        this.setState({user: user});
+        this.props.navigation.navigate('Tabs')
+      }
+  })
 );
 }
 
@@ -71,6 +70,8 @@ _signOut(){
             .catch((err) => {
               console.error("Signout Error:"+err)
       });
+
+      this._handleFBLogout();
 }
 
   componentDidMount(){
@@ -109,7 +110,7 @@ _signOut(){
                 <TouchableOpacity style={styles.button}  onPress={this._signInGoogle.bind(this)}>
                   <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook()}>
+                <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook.bind(this)}>
                   <Text style={styles.buttonText}  ><Icon name="facebook-square" size={25} color="#3b5999" />  Sign in with Facebook</Text>
                 </TouchableOpacity>
                 <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
