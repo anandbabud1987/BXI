@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,StatusBar,Image,Linking} from 'react-native';
+import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,StatusBar,Image,Linking,ActivityIndicator} from 'react-native';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from '../SigninWithGFStyle';
@@ -23,6 +23,7 @@ export default class SigninWithGF extends Component{
      headerTitleStyle:styles.headerTitleStyle,
    }
   _signInGoogle(){
+    
     GoogleSignin.signIn()
           .then((user) => {
             console.log(user);

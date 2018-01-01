@@ -8,10 +8,13 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  FlatList,
   Linking
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import ProfileList from './flatlist/ProfileList';
+import {Header} from 'react-native-elements';
 
 export default class Profile extends Component{
 
@@ -32,18 +35,21 @@ export default class Profile extends Component{
     return(
 
 
-      <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
+
       <View accessible={true}>
-      <StatusBar
-    barStyle="light-content"
-    />
+
 
     <FadeInView>
-        <Text>Profile6666 </Text>
+    <Header
+leftComponent={{ icon: 'menu', color: '#fff' }}
+centerComponent={{ text: 'Profile', style: { color: '#fff' } }}
+rightComponent={{ icon: 'home', color: '#fff' }}
+/>
+        <ProfileList/>
       </FadeInView>
 
       </View>
-      </KeyboardAvoidingView>
+
 
 
     );

@@ -64,9 +64,9 @@ const tabBarOptions = Platform.OS === 'ios' ?
   }
 
 const MyApp = TabNavigator({
-  Order: {
-    screen: Order,
-  },
+  //Order: {
+  //  screen: Order,
+  //},
   Serve: {
     screen: Serve,
   },
@@ -86,9 +86,10 @@ const MyApp = TabNavigator({
 
 const  BixiNavigator= StackNavigator(
   {
-  SigninWithGF:{screen:SigninWithGF},
-  Login: { screen: Login },
+//  SigninWithGF:{screen:SigninWithGF},
+
   Tabs: { screen: MyApp },
+  Login: { screen: Login },
   FoodType:{screen:FoodType}
   }
   ,

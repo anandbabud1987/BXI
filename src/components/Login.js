@@ -53,9 +53,7 @@ export default class Login extends Component{
       username: '' ,
       password:''
     };
-
-
-  }
+}
 
   render(){
 
@@ -106,7 +104,7 @@ export default class Login extends Component{
             <Text style={styles.text} >Reset</Text>
           </TouchableOpacity>
           <View style={{flex: 1, flexDirection: 'row'}}>
-        
+
           <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'red'}}
             onPress={() => Linking.openURL('http://google.com')}>
           Forgot Password
