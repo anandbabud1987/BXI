@@ -23,7 +23,7 @@ export default class Profile extends Component{
      tabBarLabel: 'Profile',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="user-o" size={30} color="silver" />
+       <Icon name="user-o" size={30} color={tintColor} />
      ),
    };
 
@@ -37,29 +37,9 @@ export default class Profile extends Component{
 
 
 
-      <View accessible={true}>
+      <View style={{backgroundColor:'black'}}>
 
 
-    <FadeInView>
-    <Header
-      leftComponent={{ icon: 'menu', color: '#fff' }}
-      centerComponent={{ text: 'Profile', style: { color: '#fff' } }}
-      rightComponent={{ icon: 'home', color: '#fff' }}
-      />
-        <List containerStyle={{marginBottom: 20}}>
-    {
-      PROFILE_LIST.map((l, i) => (
-        <ListItem
-          titleStyle={{color:'silver',fontFamily:'Futura',height:30,alignItems:'center',justifyContent:'center',
-          marginTop:30,marginLeft:30}}
-          key={i}
-          title={l.key}
-          onPress={()=>this.props.navigation.navigate('Login')}
-        />
-      ))
-    }
-  </List>
-      </FadeInView>
 
       </View>
 
@@ -70,12 +50,8 @@ export default class Profile extends Component{
 }
 const styles=StyleSheet.create({
   container:{
-    flex:1,
-    backgroundColor:'#FFFAFA',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:20
-  },
+    backgroundColor:'black'
+    },
   button: {
    alignItems: 'center',
    backgroundColor: '#2980b9',

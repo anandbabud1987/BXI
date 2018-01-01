@@ -19,7 +19,7 @@ export default class Chat extends Component{
      tabBarLabel: 'Chat',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="comments" size={30} color="silver" />
+       <Icon name="comments" size={30} color={tintColor} />
      ),
    };
 

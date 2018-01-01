@@ -36,15 +36,15 @@ const tabBarOptions = Platform.OS === 'ios' ?
       width:50,
       height:50
     },
-    activeTintColor: 'blue',
-    activeBackgroundColor:'#ecf0f1',
+    activeTintColor: 'red',
+    activeBackgroundColor:'black',
     labelStyle: {
               fontSize: 12,
               fontFamily:'Futura',
               color:'silver'
         },
     style:{
-      backgroundColor:'white'
+      backgroundColor:'black'
     }
   } : {
     // Android tabBarOptions
@@ -55,22 +55,22 @@ const tabBarOptions = Platform.OS === 'ios' ?
       height:40
     },
     activeTintColor: 'blue',
-    activeBackgroundColor:'#ecf0f1',
+    activeBackgroundColor:'black',
     labelStyle: {
               fontSize: 12,
               fontFamily:'Futura',
               color:'silver'
         },
     style:{
-      backgroundColor:'white',
+      backgroundColor:'black',
       //sheight:80
     }
   }
 
 const MyApp = TabNavigator({
-  //Order: {
-  //  screen: Order,
-  //},
+  Order: {
+    screen: Order,
+  },
   Serve: {
     screen: Serve,
   },
@@ -82,7 +82,7 @@ const MyApp = TabNavigator({
   }
 }, {
   tabBarPosition: 'bottom',
-  //animationEnabled: true,
+  animationEnabled: true,
   swipeEnabled:swipeEnabled,
   tabBarOptions: tabBarOptions
 });
@@ -90,7 +90,7 @@ const MyApp = TabNavigator({
 
 const  BixiNavigator= StackNavigator(
   {
-//  SigninWithGF:{screen:SigninWithGF},
+  SigninWithGF:{screen:SigninWithGF},
 
   Tabs: { screen: MyApp },
   Login: { screen: Login },
