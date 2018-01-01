@@ -36,10 +36,12 @@ const tabBarOptions = Platform.OS === 'ios' ?
       width:50,
       height:50
     },
-    activeTintColor: '#e91e63',
+    activeTintColor: 'blue',
+    activeBackgroundColor:'#ecf0f1',
     labelStyle: {
               fontSize: 12,
-              color:'black'
+              fontFamily:'Futura',
+              color:'silver'
         },
     style:{
       backgroundColor:'white'
@@ -48,15 +50,17 @@ const tabBarOptions = Platform.OS === 'ios' ?
     // Android tabBarOptions
     showIcon: true,
     showLabel: false,
-    activeTintColor: '#e91e63',
     iconStyle:{
       width:50,
       height:40
     },
+    activeTintColor: 'blue',
+    activeBackgroundColor:'#ecf0f1',
     labelStyle: {
-          fontSize: 12,
-          color:'black'
-    },
+              fontSize: 12,
+              fontFamily:'Futura',
+              color:'silver'
+        },
     style:{
       backgroundColor:'white',
       //sheight:80

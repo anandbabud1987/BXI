@@ -20,7 +20,7 @@ export default class Serve extends Component{
      tabBarLabel: 'Cook',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="free-code-camp" size={30} color="red" />
+       <Icon name="free-code-camp" size={30} color="silver" />
      ),
    };
   login(val){

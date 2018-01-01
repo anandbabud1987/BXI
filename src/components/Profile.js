@@ -13,8 +13,9 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import ProfileList from './flatlist/ProfileList';
-import {Header} from 'react-native-elements';
+import { List, ListItem ,Header} from 'react-native-elements'
+const PROFILE_LIST=require('../jsons/profile_list.json');
+
 
 export default class Profile extends Component{
 
@@ -22,7 +23,7 @@ export default class Profile extends Component{
      tabBarLabel: 'Profile',
      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
      tabBarIcon: ({ tintColor }) => (
-       <Icon name="user-o" size={30} color="#228b22" />
+       <Icon name="user-o" size={30} color="silver" />
      ),
    };
 
@@ -41,11 +42,23 @@ export default class Profile extends Component{
 
     <FadeInView>
     <Header
-leftComponent={{ icon: 'menu', color: '#fff' }}
-centerComponent={{ text: 'Profile', style: { color: '#fff' } }}
-rightComponent={{ icon: 'home', color: '#fff' }}
-/>
-        <ProfileList/>
+      leftComponent={{ icon: 'menu', color: '#fff' }}
+      centerComponent={{ text: 'Profile', style: { color: '#fff' } }}
+      rightComponent={{ icon: 'home', color: '#fff' }}
+      />
+        <List containerStyle={{marginBottom: 20}}>
+    {
+      PROFILE_LIST.map((l, i) => (
+        <ListItem
+          titleStyle={{color:'silver',fontFamily:'Futura',height:30,alignItems:'center',justifyContent:'center',
+          marginTop:30,marginLeft:30}}
+          key={i}
+          title={l.key}
+          onPress={()=>this.props.navigation.navigate('Login')}
+        />
+      ))
+    }
+  </List>
       </FadeInView>
 
       </View>
