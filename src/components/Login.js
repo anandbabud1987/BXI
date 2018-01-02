@@ -116,11 +116,20 @@ close(){
             <Text style={styles.text} >Reset</Text>
           </TouchableOpacity>
           <View style={{flex: 1, flexDirection: 'row'}}>
-
-          <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'red'}}
+          <View style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-start'}}>
+          <Text
+          style={{color:'white'}}
             onPress={() => Linking.openURL('http://google.com')}>
           Forgot Password
           </Text>
+          </View>
+          <View style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end'}}>
+          <Text
+          style={{color:'white'}}
+            onPress={() => Linking.openURL('http://google.com')}>
+          Register
+          </Text>
+          </View>
           </View>
       </FadeInView>
 

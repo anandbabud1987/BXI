@@ -132,52 +132,47 @@ _signOutGoogle(){
   render(){
     return(
 
-      <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-      <ScrollView accessible={true} showsVerticalScrollIndicator={false}>
-      <StatusBar
-        barStyle="light-content"
-        />
+    <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
+    <ScrollView accessible={true} showsVerticalScrollIndicator={false}>
+    <StatusBar
+      barStyle="light-content"
+      />
 
     <FadeInView>
-              <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
-            <Image
-                 style={{width:75,height:75}}
-                 source={require('../assets/bixi-1024.png')}
-               />
-              </View>
+            <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
+                <Image
+                     style={{width:75,height:75}}
+                     source={require('../assets/bixi-1024.png')}
+                   />
+            </View>
             <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
             <View style={styles.container}>
-                <TouchableOpacity style={styles.button}  onPress={this._signInGoogle.bind(this)}>
-                  <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook.bind(this)}>
-                  <Text style={styles.buttonText}  ><Icon name="facebook-square" size={25} color="#3b5999" />  Sign in with Facebook</Text>
-                </TouchableOpacity>
-                <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
-                <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white'}}
-                  onPress={() => (  this.openModal())}>
-                Sign-In
-                </Text>
+                  <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook.bind(this)}>
+                    <Text style={styles.buttonText}  ><Icon name="facebook" size={25} color="#3b5999" />  Continue with Facebook</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.button}  onPress={this._signInGoogle.bind(this)}>
+                    <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>
+                  </TouchableOpacity>
+                  <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
+                    <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white'}}
+                      onPress={() => (  this.openModal())}>
+                    Sign-In
+                    </Text>
+                  </View>
                 </View>
-                </View>
 
-                </FadeInView>
-
-
-                </ScrollView>
-
-
-                                <Modal animationType='slide' transparent={false} visible={visibility} onRequestClose={()=>{}}>
-                                <View style={styles.container1}>
-                                <TouchableOpacity onPress={()=>this.close()}  style={styles.closeButton} >
-                                  <Icon style={styles.closeButtonIcon} name='close' size={30} />
-                                </TouchableOpacity>
-                                </View>
-                                <Login/>
-                                </Modal>
-
-                </KeyboardAvoidingView>
+    </FadeInView>
+    </ScrollView>
+      <Modal animationType='slide' transparent={false} visible={visibility} onRequestClose={()=>{}}>
+        <View style={styles.container1}>
+        <TouchableOpacity onPress={()=>this.close()}  style={styles.closeButton} >
+          <Icon style={styles.closeButtonIcon} name='close' size={30} />
+        </TouchableOpacity>
+        </View>
+        <Login/>
+      </Modal>
+    </KeyboardAvoidingView>
 
     );
   }
