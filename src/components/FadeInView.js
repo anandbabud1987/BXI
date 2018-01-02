@@ -10,7 +10,7 @@ export default class FadeInView extends Component{
       this.state.fadeAnim,
       {
         toValue:1,
-         duration: 3000,
+         duration: 1000,
     }).start();
   }
   render(){
@@ -31,7 +31,7 @@ export default class FadeInView extends Component{
 const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#27ae60',
+    backgroundColor:'black',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   fadeIn:{
     width:250,
     height:50,
-    backgroundColor:'#bdc3c7',
+    backgroundColor:'#adc3c9',
   },
   radius:{
     width: width,

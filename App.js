@@ -54,7 +54,7 @@ const tabBarOptions = Platform.OS === 'ios' ?
       width:50,
       height:40
     },
-    activeTintColor: 'blue',
+    activeTintColor: 'red',
     activeBackgroundColor:'black',
     labelStyle: {
               fontSize: 12,
@@ -68,9 +68,9 @@ const tabBarOptions = Platform.OS === 'ios' ?
   }
 
 const MyApp = TabNavigator({
-  Order: {
-    screen: Order,
-  },
+//  Order: {
+//    screen: Order,
+//  },
   Serve: {
     screen: Serve,
   },
@@ -107,10 +107,3 @@ export default class App extends Component<{}> {
     return (<BixiNavigator/>);
   }
 }
-
-const styles=StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:'#FFFAFA',
-  }
-});

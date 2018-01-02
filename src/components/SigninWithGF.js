@@ -1,21 +1,33 @@
 import React,{Component} from 'react';
-import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,StatusBar,Image,Linking,ActivityIndicator} from 'react-native';
+import {View,TouchableOpacity,Text,KeyboardAvoidingView,Platform,ScrollView,StatusBar,Image,Linking,ActivityIndicator,Modal,TextInput} from 'react-native';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from '../SigninWithGFStyle';
 import FadeInView from './FadeInView';
 const FBSDK = require('react-native-fbsdk');
+import Login from './Login';
 const {
   LoginManager,
   LoginButton,
-  AccessToken
+  AccessToken,
+  FB,
+  GraphRequestManager, GraphRequest
 } = FBSDK;
-
+  var visibility=false;
 
 const user = GoogleSignin.currentUser();
 export default class SigninWithGF extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      username: '' ,
+      password:''
+    };
+  }
+  close(){
+    console.log("Close");
+    visibility=false;
+    this.setState({visibility:false})
   }
   static navigationOptions = {
      title: 'BiXi',
@@ -23,7 +35,7 @@ export default class SigninWithGF extends Component{
      headerTitleStyle:styles.headerTitleStyle,
    }
   _signInGoogle(){
-    
+    LoginManager.logOut();
     GoogleSignin.signIn()
           .then((user) => {
             console.log(user);
@@ -36,18 +48,14 @@ export default class SigninWithGF extends Component{
           .done();
 }
 
-_handleFBLogout(){
-  LoginManager.logout().then(
-    () => {
-      console.log('FB Logged out');
-    }
-  )
-  .catch((err)=>{
-    console.log("Facebook logout Error:"+err);
-  });
+openModal(){
+  console.log("Close");
+  visibility=true;
+  this.setState({visibility:true})
 }
 
 _signInFaceBook(){
+  this._signOutGoogle();
   LoginManager.logInWithReadPermissions(['public_profile','email','user_location','user_birthday']).then(
   ((result)=>{
       console.log(result);
@@ -57,13 +65,46 @@ _signInFaceBook(){
       else{
         console.log();
         this.setState({user: user});
-        this.props.navigation.navigate('Tabs')
+        AccessToken.getCurrentAccessToken().then(
+     (data) => {
+       let accessToken = data.accessToken;
+       console.log(accessToken.toString());
+
+       const responseInfoCallback = (error, result) => {
+         if (error) {
+           console.log(error)
+           console.log('Error fetching data: ' + error.toString());
+         } else {
+           console.log(result)
+           console.log('Success fetching data: ' + result.toString());
+         }
+       }
+
+       const infoRequest = new GraphRequest(
+         '/me',
+         {
+           accessToken: accessToken,
+           parameters: {
+             fields: {
+               string: 'email,name,first_name,middle_name,last_name,picture'
+             }
+           }
+         },
+         responseInfoCallback
+       );
+
+       // Start the graph request.
+       new GraphRequestManager().addRequest(infoRequest).start();
+
+     });
+        this.props.navigation.navigate('Tabs');
+
       }
   })
 );
 }
 
-_signOut(){
+_signOutGoogle(){
       GoogleSignin.signOut()
             .then(() => {
               console.log('out');
@@ -72,7 +113,6 @@ _signOut(){
               console.error("Signout Error:"+err)
       });
 
-      this._handleFBLogout();
 }
 
   componentDidMount(){
@@ -116,7 +156,7 @@ _signOut(){
                 </TouchableOpacity>
                 <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
                 <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white'}}
-                  onPress={() => (  this.props.navigation.navigate('Login'))}>
+                  onPress={() => (  this.openModal())}>
                 Sign-In
                 </Text>
                 </View>
@@ -124,8 +164,21 @@ _signOut(){
 
                 </FadeInView>
 
+
                 </ScrollView>
+
+
+                                <Modal animationType='slide' transparent={false} visible={visibility} onRequestClose={()=>{}}>
+                                <View style={styles.container1}>
+                                <TouchableOpacity onPress={()=>this.close()}  style={styles.closeButton} >
+                                  <Icon style={styles.closeButtonIcon} name='close' size={30} />
+                                </TouchableOpacity>
+                                </View>
+                                <Login/>
+                                </Modal>
+
                 </KeyboardAvoidingView>
+
     );
   }
 

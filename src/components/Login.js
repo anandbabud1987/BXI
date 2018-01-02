@@ -10,10 +10,11 @@ import {
   Platform,
   Linking,
   Vibration,
-  Image
+  Image,
+  Modal
 } from 'react-native';
 import FadeInView from './FadeInView';
-
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import styles from '../styles';
 
@@ -21,7 +22,7 @@ import styles from '../styles';
 import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
 const DURATION = 500;
 const PATTERN = [1000, 2000, 3000];
-
+  var visibility=true;
 export default class Login extends Component{
 
   static navigationOptions = {
@@ -47,6 +48,8 @@ export default class Login extends Component{
             password:''});
   }
 
+
+
   constructor(props){
     super(props);
     this.state = {
@@ -54,26 +57,35 @@ export default class Login extends Component{
       password:''
     };
 }
-
+close(){
+  console.log("Close");
+  this.visibility=false;
+  this.setState({visibility:false})
+}
   render(){
+
 
 
     return(
 
 
+
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
+
       <ScrollView accessible={true} showsVerticalScrollIndicator={false}>
+
       <StatusBar
         barStyle="light-content"
         />
 
     <FadeInView>
+
       <View style={{flex: 1, flexDirection: 'row',alignItems:'center',justifyContent:'center',padding:40}}>
+
     <Image
          style={{width:50,height:50}}
          source={require('../assets/bixi-1024.png')}
        />
-      <Text style={styles.loginTitle}>BiXi</Text>
       </View>
     <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
@@ -114,6 +126,7 @@ export default class Login extends Component{
 
       </ScrollView>
       </KeyboardAvoidingView>
+
     );
   }
 }

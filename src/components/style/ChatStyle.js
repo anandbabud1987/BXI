@@ -1,50 +1,5 @@
-import React,{Component} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  Linking,
-  Button
-} from 'react-native';
-import FadeInView from './FadeInView';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
-export default class Serve extends Component{
-
-  static navigationOptions = {
-     tabBarLabel: 'Cook',
-     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-     tabBarIcon: ({ tintColor }) => (
-       <Icon name="free-code-camp" size={30} color={tintColor} />
-     ),
-   };
-  login(val){
-      this.props.navigation.navigate(val);
-  }
-
-  render(){
-    return(
-
-
-      <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-      <View accessible={true}>
-      <StatusBar
-        barStyle="light-content"
-        />
-
-
-      </View>
-      </KeyboardAvoidingView>
-
-
-    );
-  }
-}
+import {StyleSheet,Dimensions} from 'react-native';
+const {width,height} =Dimensions.get('window');
 const styles=StyleSheet.create({
   container:{
     flex:1,
@@ -100,3 +55,4 @@ const styles=StyleSheet.create({
   }
 
 });
+export default styles;

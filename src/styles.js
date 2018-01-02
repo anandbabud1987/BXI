@@ -3,10 +3,10 @@ import {StyleSheet} from 'react-native';
 const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#FFFAFA',
+    backgroundColor:'#a4c400',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:20,
+    padding:10,
   },
   image:{
     flex:1,
@@ -40,7 +40,23 @@ const styles=StyleSheet.create({
   },
   text:{
     textShadowColor:'#34495e',
-     color:'#fff',
+    color:'#fff',
+  },
+  closeButtonIcon:{
+    textShadowColor:'#34495e',
+    color:'#fff',
+    marginLeft:0,
+    alignItems:'flex-start',
+    justifyContent:'flex-start'
+
+  },
+  closeButton:{
+    marginLeft:0,
+    width:50,
+    height:50,
+    marginTop:4,
+    alignItems:'flex-start',
+    justifyContent:'flex-start'
   },
   loginTitle:{
     textShadowColor:'#2c3e50',
@@ -52,7 +68,7 @@ const styles=StyleSheet.create({
   },
   loginSubTitle:{
     textShadowColor:'#27ae60',
-     color:'#c0392b',
+     color:'white',
      textAlign:'center',
      fontSize:10,
      marginBottom:30,

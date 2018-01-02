@@ -8,9 +8,26 @@ const styles=StyleSheet.create({
     justifyContent: 'center',
     padding:20,
   },
+  container1:{
+    backgroundColor:'#a4c400',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding:20,
+  },
   signinTitle:{
     backgroundColor:'#a4c400',
     justifyContent:'center'
+  },
+  closeButtonIcon:{
+    textShadowColor:'#34495e',
+    color:'#fff',
+    marginLeft:0,
+    width:50,
+    height:50,
+    alignItems:'flex-start',
+    justifyContent:'flex-start',
+    backgroundColor:'#a4c400'
+
   },
   headerTitleStyle:{
     color:'white',
@@ -40,6 +57,15 @@ const styles=StyleSheet.create({
    borderRadius:30,
    marginBottom:27
  },
+ buttonLogin: {
+  alignItems: 'center',
+  backgroundColor: '#2980b9',
+  padding: 10,
+  width:300,
+  height:45,
+  borderRadius:7,
+  marginBottom:27
+},
   textinput:{
     backgroundColor:'#F5F5F5',
     width:300,
