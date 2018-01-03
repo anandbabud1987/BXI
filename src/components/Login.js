@@ -47,18 +47,23 @@ export default class Login extends Component{
             password:''});
   }
 
+  componentDidMount(){
+    this.setState({Rvisibility:false})
+  }
+
 
 
   constructor(props){
     super(props);
     this.state = {
       username: '' ,
-      password:''
+      password:'',
+      Rvisibility:false
     };
 }
 openModal(){
-  console.log("Close");
-  Rvisibility=true;
+  console.log("Open modal");
+  this.Rvisibility=true;
   this.setState({Rvisibility:true})
 }
 closeR(){
@@ -139,7 +144,7 @@ closeR(){
       </FadeInView>
 
       </ScrollView>
-      <Modal animationType='slide' transparent={false} visible={this.Rvisibility} onRequestClose={()=>{}}>
+      <Modal animationType='slide' transparent={false} visible={Rvisibility} onRequestClose={()=>{}}>
         <View style={styles.container1}>
         <TouchableOpacity onPress={()=>this.closeR()}  style={styles.closeButton} >
           <Icon style={styles.closeButtonIcon} name='arrow-left' size={30} />
