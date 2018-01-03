@@ -15,14 +15,13 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
 import styles from '../styles';
-
-
 import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
+import Register from './Register';
 const DURATION = 500;
 const PATTERN = [1000, 2000, 3000];
-  var visibility=true;
+var Rvisibility=false;
+
 export default class Login extends Component{
 
   static navigationOptions = {
@@ -57,10 +56,15 @@ export default class Login extends Component{
       password:''
     };
 }
-close(){
+openModal(){
   console.log("Close");
-  this.visibility=false;
-  this.setState({visibility:false})
+  Rvisibility=true;
+  this.setState({Rvisibility:true})
+}
+closeR(){
+  console.log("Close");
+  this.Rvisibility=false;
+  this.setState({Rvisibility:false})
 }
   render(){
 
@@ -86,6 +90,7 @@ close(){
          style={{width:50,height:50}}
          source={require('../assets/bixi-1024.png')}
        />
+         <Text style={styles.welcometext}> Welcome to BiXi...</Text>
       </View>
     <Text style={styles.loginSubTitle}>Food is Good!</Text>
 
@@ -126,7 +131,7 @@ close(){
           <View style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end'}}>
           <Text
           style={{color:'white'}}
-            onPress={() => Linking.openURL('http://google.com')}>
+            onPress={() => this.openModal()}>
           Register
           </Text>
           </View>
@@ -134,6 +139,14 @@ close(){
       </FadeInView>
 
       </ScrollView>
+      <Modal animationType='slide' transparent={false} visible={this.Rvisibility} onRequestClose={()=>{}}>
+        <View style={styles.container1}>
+        <TouchableOpacity onPress={()=>this.closeR()}  style={styles.closeButton} >
+          <Icon style={styles.closeButtonIcon} name='arrow-left' size={30} />
+        </TouchableOpacity>
+        </View>
+        <Register/>
+      </Modal>
       </KeyboardAvoidingView>
 
     );

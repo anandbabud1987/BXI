@@ -37,7 +37,7 @@ export default class Serve extends Component{
         barStyle="light-content"
         />
 
-
+        
       </View>
       </KeyboardAvoidingView>
 

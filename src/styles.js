@@ -42,12 +42,21 @@ const styles=StyleSheet.create({
     textShadowColor:'#34495e',
     color:'#fff',
   },
+  welcometext:{
+    textShadowColor:'#34495e',
+    color:'#fff',
+    fontFamily:'Futura',
+    fontSize:20
+  },
   closeButtonIcon:{
     textShadowColor:'#34495e',
     color:'#fff',
     marginLeft:0,
+    width:50,
+    height:50,
     alignItems:'flex-start',
-    justifyContent:'flex-start'
+    justifyContent:'flex-start',
+    backgroundColor:'#a4c400'
 
   },
   closeButton:{

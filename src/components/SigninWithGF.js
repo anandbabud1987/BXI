@@ -155,7 +155,7 @@ _signOutGoogle(){
                     <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>
                   </TouchableOpacity>
                   <View style={{flex: 1, flexDirection: 'row',marginTop:5,marginRight:0}}>
-                    <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white'}}
+                    <Text style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end',color:'white',fontWeight:'bold'}}
                       onPress={() => (  this.openModal())}>
                     Sign-In
                     </Text>
