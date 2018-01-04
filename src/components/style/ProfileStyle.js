@@ -32,6 +32,13 @@ const styles=StyleSheet.create({
     textShadowColor:'#34495e',
      color:'#fff',
   },
+  item: {
+    padding: 10,
+    height: 44,
+    borderBottomWidth:1,
+    width:300,
+    height:48,
+  },
   loginTitle:{
     textShadowColor:'#2c3e50',
      color:'#228b22',
@@ -52,6 +59,9 @@ const styles=StyleSheet.create({
     width:250,
     height:50,
     backgroundColor:'#bdc3c7',
+  },
+  separator:{
+    borderWidth:1
   }
 
 });

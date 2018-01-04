@@ -1,1 +1,12 @@
-[{key: 'Settings',icon:'flight-takeoff'}, {key: 'Payments'},{key:'Signout'}]
+[{
+	key: 'Settings',
+	icon: 'flight-takeoff',
+	onpress: 'settings'
+}, {
+	key: 'Payments',
+	onpress: 'payments'
+}, {
+	key: 'Signout',
+	onpress: 'signout',
+  icon:'sign-out'
+}]

@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Linking
+  Linking,
+  FlatList,
+  ItemSeparatorComponent
+
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -42,27 +45,37 @@ export default class Profile extends Component{
              this.props.navigation.navigate('SigninWithGF');
 
    }
-
+   onPress(val){
+     if(val==='signout'){
+       this._signOut();
+     }
+   }
   render(){
     return(
-
-
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-      <View accessible={true}>
-      <StatusBar
-        barStyle="light-content"
-        />
+          <View accessible={true}>
+          <StatusBar
+          barStyle="light-content"
+          />
 
-    <FadeInView>
-    <TouchableOpacity style={styles.button}  onPress={() => this._signOut()}>
-      <Text style={styles.text}>Signout</Text>
-    </TouchableOpacity>
-    </FadeInView>
+          <FadeInView>
+              <View style={styles.container}>
+              <FlatList
+                    data={require('../jsons/profile_list.json')}
+                    renderItem=
+                    {
+                      ({item}) =>
+                      <TouchableOpacity style={styles.item} onPress={this.onPress(item.onpress)}>
+                          <Text >{item.key}</Text>
+                      </TouchableOpacity>
 
-      </View>
+                    }
+                  />
+                </View>
+          </FadeInView>
+
+          </View>
       </KeyboardAvoidingView>
-
-
-    );
+      );
   }
 }

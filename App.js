@@ -26,7 +26,7 @@ import FoodType from './src/components/FoodType';
 import SigninWithGF from './src/components/SigninWithGF';
 
 
-const swipeEnabled=Platform.OS==='ios'?true:false;
+const swipeEnabled=Platform.OS==='ios'?false:false;
 
 const tabBarOptions = Platform.OS === 'ios' ?
   {
@@ -68,9 +68,9 @@ const tabBarOptions = Platform.OS === 'ios' ?
   }
 
 const MyApp = TabNavigator({
-//  Order: {
-//    screen: Order,
-//  },
+  Order: {
+   screen: Order,
+  },
   Serve: {
     screen: Serve,
   },
@@ -90,7 +90,7 @@ const MyApp = TabNavigator({
 
 const  BixiNavigator= StackNavigator(
   {
-  SigninWithGF:{screen:SigninWithGF},
+  //SigninWithGF:{screen:SigninWithGF},
 
   Tabs: { screen: MyApp },
   Login: { screen: Login },
