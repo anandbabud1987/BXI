@@ -32,17 +32,23 @@ export default class Profile extends Component{
      ),
    };
 
+   componentDidMount(){
+     GoogleSignin.configure({
+             iosClientId: "160848147756-5qu10ijjibbm08u3qin6m5spc30sbg3c.apps.googleusercontent.com", // only for iOS
+             webClientId: "160848147756-fqp363psltrsapsf0bhb43fge5n59goc.apps.googleusercontent.com", //only for android
+             forceConsentPrompt: false
+           })
+           .then(() => {
+             GoogleSignin.currentUserAsync().then((user) => {
+                 console.log('USER', user);
+                 this.setState({user: user});
+               }).done();
+           });
+   }
+
 
    _signOut(){
-         GoogleSignin.signOut()
-               .then(() => {
-                 console.log('out');
-               })
-               .catch((err) => {
-                 console.error("Signout Error:"+err)
-         });
-           LoginManager.logOut();
-             this.props.navigation.navigate('SigninWithGF');
+
 
    }
    onPress(val){
@@ -66,7 +72,12 @@ export default class Profile extends Component{
                     {
                       ({item}) =>
                       <TouchableOpacity style={styles.item} onPress={this.onPress(item.onpress)}>
-                          <Text >{item.key}</Text>
+                        <View style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-start'}}>
+                          <Text style={styles.text}>{item.key}</Text>
+                        </View>
+                          <View style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end'}}>
+                          <Icon size={30} name={item.icon} color="black" style={{alignItems:'flex-end',justifyContent:'flex-end',marginRight:15}}/>
+                          </View>
                       </TouchableOpacity>
 
                     }

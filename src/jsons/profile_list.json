@@ -1,6 +1,6 @@
 [{
 	key: 'Settings',
-	icon: 'flight-takeoff',
+	icon: 'wrench',
 	onpress: 'settings'
 }, {
 	key: 'Payments',

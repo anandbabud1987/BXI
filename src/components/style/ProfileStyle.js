@@ -3,7 +3,7 @@ const {width,height} =Dimensions.get('window');
 const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#FFFAFA',
+    backgroundColor:'white',
     alignItems: 'center',
     justifyContent: 'center',
     padding:20
@@ -30,14 +30,15 @@ const styles=StyleSheet.create({
   },
   text:{
     textShadowColor:'#34495e',
-     color:'#fff',
+    color:'black',
+    fontSize:15,
+    fontFamily:'Futura'
   },
   item: {
     padding: 10,
-    height: 44,
+    height: 70,
     borderBottomWidth:1,
     width:300,
-    height:48,
   },
   loginTitle:{
     textShadowColor:'#2c3e50',
