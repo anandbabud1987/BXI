@@ -65,23 +65,25 @@ export default class Profile extends Component{
           />
 
           <FadeInView>
-              <View style={styles.container}>
+              <View style={{borderWidth:1,borderColor:'black'}}>
+              <View >
               <FlatList
                     data={require('../jsons/profile_list.json')}
                     renderItem=
                     {
                       ({item}) =>
                       <TouchableOpacity style={styles.item} onPress={this.onPress(item.onpress)}>
-                        <View style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-start'}}>
-                          <Text style={styles.text}>{item.key}</Text>
+                      <View style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-start'}}>
+
+
+                          <Text style={styles.text}><Icon size={20} name={item.icon} color="black" style={{alignItems:'flex-end',justifyContent:'flex-end',marginRight:15}}/>   {item.key}</Text>
                         </View>
-                          <View style={{flex:1,alignItems:'flex-end',justifyContent: 'flex-end'}}>
-                          <Icon size={30} name={item.icon} color="black" style={{alignItems:'flex-end',justifyContent:'flex-end',marginRight:15}}/>
-                          </View>
+
                       </TouchableOpacity>
 
                     }
                   />
+                  </View>
                 </View>
           </FadeInView>
 

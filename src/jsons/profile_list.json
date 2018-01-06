@@ -4,7 +4,8 @@
 	onpress: 'settings'
 }, {
 	key: 'Payments',
-	onpress: 'payments'
+	onpress: 'payments',
+	icon:'credit-card'
 }, {
 	key: 'Signout',
 	onpress: 'signout',

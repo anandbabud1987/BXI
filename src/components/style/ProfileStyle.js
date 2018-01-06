@@ -36,9 +36,13 @@ const styles=StyleSheet.create({
   },
   item: {
     padding: 10,
-    height: 70,
+    height: 50,
     borderBottomWidth:1,
     width:300,
+    marginRight:20,
+    marginLeft:20,
+    marginTop:20,
+    marginBottom:20
   },
   loginTitle:{
     textShadowColor:'#2c3e50',
