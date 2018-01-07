@@ -3,10 +3,13 @@ const {width,height} =Dimensions.get('window');
 const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'#FFFAFA',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:20
+    backgroundColor:'white'
+  },
+  header:{
+    flex:1,
+    backgroundColor:'white',
+    color:'white',
+    padding:5
   },
   button: {
    alignItems: 'center',

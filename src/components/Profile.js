@@ -18,10 +18,12 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from './style/ProfileStyle';
 import SigninWithGF from './SigninWithGF';
 import {GoogleSignin} from 'react-native-google-signin';
+import {Card,ListItem,List,Header,Rating} from 'react-native-elements';
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager
 } = FBSDK;
+const PROFILE_DATA=require('../jsons/profile_list.json');
 export default class Profile extends Component{
 
   static navigationOptions = {
@@ -58,36 +60,38 @@ export default class Profile extends Component{
    }
   render(){
     return(
-      <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-          <View accessible={true}>
+      <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container} >
+
+            <Header
+                  backgroundColor='#a4c400'
+                  centerComponent={{ text: 'Profile',
+                              style: { color: 'black',textShadowColor:'#34495e',fontSize:25,fontFamily:'Futura'}
+                      }}
+                  />
           <StatusBar
           barStyle="light-content"
           />
 
           <FadeInView>
-              <View style={{borderWidth:1,borderColor:'black'}}>
-              <View >
-              <FlatList
-                    data={require('../jsons/profile_list.json')}
-                    renderItem=
-                    {
-                      ({item}) =>
-                      <TouchableOpacity style={styles.item} onPress={this.onPress(item.onpress)}>
-                      <View style={{flex:1,alignItems:'flex-start',justifyContent: 'flex-start'}}>
-
-
-                          <Text style={styles.text}><Icon size={20} name={item.icon} color="black" style={{alignItems:'flex-end',justifyContent:'flex-end',marginRight:15}}/>   {item.key}</Text>
-                        </View>
-
-                      </TouchableOpacity>
-
-                    }
-                  />
-                  </View>
-                </View>
+          <List containerStyle={styles.listitem}>
+              {
+                PROFILE_DATA.map((item, i) => {
+                    return (
+                      <ListItem
+                          key={i}
+                          title={item.key}
+                          titleStyle= { {color: 'black',textShadowColor:'#34495e',fontSize:15,fontFamily:'Futura'}}
+                          leftIcon={{name: item.icon,type:item.icontype}}
+                        />
+                    );
+                  })
+              }
+            </List>
+            <Card>
+            <Rating showRating ratingColor='#3498db' fractions={1} startingValue={5} type="heart" />
+            </Card>
           </FadeInView>
 
-          </View>
       </KeyboardAvoidingView>
       );
   }

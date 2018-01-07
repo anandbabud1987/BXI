@@ -36,6 +36,11 @@ export default class Order extends Component{
          latitude: 0,
          longitude:0,
 
+       },
+       markerPosition1:{
+         latitude: 10,
+         longitude:0,
+
        }
 
      }
@@ -80,6 +85,10 @@ export default class Order extends Component{
               <MapView.Marker coordinate={this.state.markerPosition}>
 
                 </MapView.Marker>
+
+                <MapView.Marker coordinate={this.state.markerPosition1}>
+
+                  </MapView.Marker>
 
               </MapView>
               <TextInput style={styles.textinput} placeholder="Search"/>

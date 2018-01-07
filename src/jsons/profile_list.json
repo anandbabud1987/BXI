@@ -1,13 +1,23 @@
 [{
 	key: 'Settings',
 	icon: 'wrench',
-	onpress: 'settings'
+	onpress: 'settings',
+	icontype:'font-awesome'
 }, {
 	key: 'Payments',
 	onpress: 'payments',
-	icon:'credit-card'
-}, {
+	icon:'credit-card',
+	icontype:'font-awesome'
+},
+{
+ key: 'Pay with Bit Coin',
+ onpress: 'email',
+ icon:'bitcoin',
+ icontype:'font-awesome'
+},
+{
 	key: 'Signout',
 	onpress: 'signout',
-  icon:'sign-out'
+  icon:'sign-out',
+	icontype:'font-awesome'
 }]

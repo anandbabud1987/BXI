@@ -3,10 +3,19 @@ const {width,height} =Dimensions.get('window');
 const styles=StyleSheet.create({
   container:{
     flex:1,
+    backgroundColor:'white'
+  },
+  header:{
+    flex:1,
     backgroundColor:'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:20
+    color:'white',
+    padding:5
+  },
+  listitem:{
+    marginTop:10,
+    marginLeft:10,
+    marginRight:10,
+    marginBottom:10
   },
   button: {
    alignItems: 'center',
@@ -38,9 +47,9 @@ const styles=StyleSheet.create({
     padding: 10,
     height: 50,
     borderBottomWidth:1,
-    width:300,
-    marginRight:20,
-    marginLeft:20,
+    width:width-10,
+    marginRight:30,
+    marginLeft:30,
     marginTop:20,
     marginBottom:20
   },

@@ -13,6 +13,7 @@ import {
 import FadeInView from './FadeInView';
 import styles from './style/ChatStyle';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import {Header} from 'react-native-elements';
 
 export default class Chat extends Component{
 
@@ -40,7 +41,13 @@ export default class Chat extends Component{
     />
 
     <FadeInView>
-        <Text>Profile6666 </Text>
+    <Header
+          backgroundColor='#a4c400'
+          centerComponent={{ text: 'Chat',
+                      style: { color: 'black',textShadowColor:'#34495e',fontSize:25,fontFamily:'Futura'}
+              }}
+          />
+        <Text>Chat </Text>
       </FadeInView>
 
       </View>
