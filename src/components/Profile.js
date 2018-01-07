@@ -10,7 +10,8 @@ import {
   Platform,
   Linking,
   FlatList,
-  ItemSeparatorComponent
+  ItemSeparatorComponent,
+  Image
 
 } from 'react-native';
 import FadeInView from './FadeInView';
@@ -19,20 +20,32 @@ import styles from './style/ProfileStyle';
 import SigninWithGF from './SigninWithGF';
 import {GoogleSignin} from 'react-native-google-signin';
 import {Card,ListItem,List,Header,Rating} from 'react-native-elements';
+import {NavigationActions} from 'react-navigation';
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager
 } = FBSDK;
 const PROFILE_DATA=require('../jsons/profile_list.json');
+const PROFILE_PIC="";
 export default class Profile extends Component{
 
-  static navigationOptions = {
-     tabBarLabel: 'Profile',
-     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-     tabBarIcon: ({ tintColor }) => (
-       <Icon name="user" size={30} color={tintColor} />
-     ),
-   };
+  static navigationOptions = ({ navigation }) => ({
+   title: 'Profile',
+   tabBarLabel: 'Profile',
+   // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+   tabBarIcon: ({ tintColor }) => (
+     <Icon name="user" size={30} color={tintColor} />
+   ),
+ });
+
+
+
+   constructor(props){
+     super(props);
+     this.state = {
+
+     };
+ }
 
    componentDidMount(){
      GoogleSignin.configure({
@@ -46,6 +59,8 @@ export default class Profile extends Component{
                  this.setState({user: user});
                }).done();
            });
+           //PROFILE_PIC=this.navigation.state.user;
+           console.log("profile pick "+PROFILE_PIC)
    }
 
 
@@ -53,12 +68,23 @@ export default class Profile extends Component{
 
 
    }
-   onPress(val){
-     if(val==='signout'){
-       this._signOut();
+   onPressButton(val){
+     console.log(val)
+     if(val==='settings'){
+      console.log('settings pressed');
+      const navigateAction=NavigationActions.navigate({
+        routeName:"Login"
+      });
+      this.props.navigation.dispatch(navigateAction);
+
+
      }
    }
   render(){
+     const { params } = this.props.navigation.state.params;
+      PROFILE_PIC=this.props.navigation.state.params.user.photo;
+     console.log('In Profile');
+     console.log(PROFILE_PIC);
     return(
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container} >
 
@@ -73,16 +99,23 @@ export default class Profile extends Component{
           />
 
           <FadeInView>
+          <Image
+             style={{width: 50, height: 50}}
+             source={{uri: PROFILE_PIC}}
+         />
           <List containerStyle={styles.listitem}>
               {
                 PROFILE_DATA.map((item, i) => {
                     return (
                       <ListItem
                           key={i}
+                          component={TouchableOpacity
+                          }
                           title={item.key}
                           titleStyle= { {color: 'black',textShadowColor:'#34495e',fontSize:15,fontFamily:'Futura'}}
                           leftIcon={{name: item.icon,type:item.icontype}}
-                        />
+                          onPress={()=>this.onPressButton(item.onpress)}
+                      />
                     );
                   })
               }

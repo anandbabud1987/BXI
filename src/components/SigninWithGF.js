@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from '../SigninWithGFStyle';
 import FadeInView from './FadeInView';
 const FBSDK = require('react-native-fbsdk');
+import {NavigationActions} from 'react-navigation';
 import Login from './Login';
 const {
   LoginManager,
@@ -40,7 +41,11 @@ export default class SigninWithGF extends Component{
           .then((user) => {
             console.log(user);
             this.setState({user: user});
-            this.props.navigation.navigate('Tabs')
+            const navigateAction=NavigationActions.navigate({
+              routeName:"Tabs",
+              params:{user:user}
+            });
+            this.props.navigation.dispatch(navigateAction);
           })
           .catch((err) => {
             console.log('WRONG SIGNIN', err);

@@ -15,7 +15,7 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 
-import { StackNavigator,Easing,Animated,TabNavigator} from 'react-navigation';
+import { StackNavigator,Easing,Animated,TabNavigator,NavigationActions,StackRouter} from 'react-navigation';
 
 import Login from './src/components/Login';
 import Order from './src/components/Order';
@@ -70,15 +70,23 @@ const tabBarOptions = Platform.OS === 'ios' ?
 const MyApp = TabNavigator({
   Order: {
    screen: Order,
+   path:'/bixi/tabs/order',
+   key:'order'
   },
   Serve: {
     screen: Serve,
+    path:'/bixi/tabs/serve',
+     key:'serve'
   },
   Chat: {
     screen: Chat,
+    path:'/bixi/tabs/chat',
+    key:'chat'
   },
   Profile: {
     screen: Profile,
+    path:'/bixi/tabs/profile',
+    key:'profile'
   }
 }, {
   tabBarPosition: 'bottom',
@@ -90,18 +98,79 @@ const MyApp = TabNavigator({
 
 const  BixiNavigator= StackNavigator(
   {
-  //SigninWithGF:{screen:SigninWithGF},
-
-  Tabs: { screen: MyApp },
-  Login: { screen: Login },
-  FoodType:{screen:FoodType}
+    SigninWithGF:{
+      screen:SigninWithGF,
+      path:'/bixi/signin/gf',
+      key:'sign-in-with-gf'
+    },
+    Tabs: {
+      screen: MyApp ,
+      path:'/bixi/tabs',
+      key:'tabs'
+    },
+    Login: {
+      screen: Login ,
+      path:'/bix/Login',
+      key:'login'
+    },
+    FoodType:{
+      screen:FoodType,
+      path:'/bix/foodtype',
+      key:'foodtype'
+    }
   }
   ,
   {
     headerMode: 'none',
     mode: 'modal',
+    initialRouteName: 'SigninWithGF',
   }
 );
+
+
+
+
+
+const defaultGetStateForActionMyApp = MyApp.router.getStateForAction;
+
+MyApp.router.getStateForAction = (action, state) => {
+  console.log("MyApp Tab state for action");
+  console.log(state);
+  console.log(action);
+  console.log('end')
+  if (
+    state &&
+    action.type === NavigationActions.BACK &&
+    state.routes[state.index].params
+  ) {
+    console.log('Back Clicked');
+    return null;
+  }
+  if(state && action.type===NavigationActions.Profile){
+
+  }
+
+  return defaultGetStateForActionMyApp(action, state);
+};
+
+const defaultGetStateForAction = BixiNavigator.router.getStateForAction;
+
+BixiNavigator.router.getStateForAction = (action, state) => {
+  console.log("BixiNavigator  state for action");
+  console.log(state);
+  if (
+    state &&
+    action.type === NavigationActions.BACK &&
+    state.routes[state.index].params
+  ) {
+    console.log('Back Clicked');
+    return null;
+  }
+
+  return defaultGetStateForAction(action, state);
+};
+
+
 export default class App extends Component<{}> {
   render() {
     return (<BixiNavigator/>);
