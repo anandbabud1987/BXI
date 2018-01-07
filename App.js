@@ -92,7 +92,9 @@ const MyApp = TabNavigator({
   tabBarPosition: 'bottom',
   animationEnabled: true,
   swipeEnabled:swipeEnabled,
-  tabBarOptions: tabBarOptions
+  tabBarOptions: tabBarOptions,
+  initialRouteName: 'Profile',
+
 });
 
 
