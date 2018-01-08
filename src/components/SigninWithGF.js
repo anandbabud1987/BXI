@@ -43,7 +43,7 @@ export default class SigninWithGF extends Component{
             this.setState({user: user});
             const navigateAction=NavigationActions.navigate({
               routeName:"Tabs",
-              params:{user:user}
+              params:{user:user,signinType:'google'}
             });
             this.props.navigation.dispatch(navigateAction);
           })
@@ -81,6 +81,11 @@ _signInFaceBook(){
            console.log('Error fetching data: ' + error.toString());
          } else {
            console.log(result)
+           const navigateAction=NavigationActions.navigate({
+             routeName:"Tabs",
+             params:{user:user,signinType:'facebook',result:result}
+           });
+           this.props.navigation.dispatch(navigateAction);
            console.log('Success fetching data: ' + result.toString());
          }
        }
@@ -102,7 +107,6 @@ _signInFaceBook(){
        new GraphRequestManager().addRequest(infoRequest).start();
 
      });
-        this.props.navigation.navigate('Tabs');
 
       }
   })

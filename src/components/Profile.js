@@ -27,6 +27,9 @@ const {
 } = FBSDK;
 const PROFILE_DATA=require('../jsons/profile_list.json');
 const PROFILE_PIC="";
+const FIRST_NAME="";
+const LAST_NAME="";
+const EMAIL="";
 export default class Profile extends Component{
 
   static navigationOptions = ({ navigation }) => ({
@@ -82,7 +85,18 @@ export default class Profile extends Component{
    }
   render(){
      const { params } = this.props.navigation.state.params;
+     if(this.props.navigation.state.params && this.props.navigation.state.params.signinType==='google'){
       PROFILE_PIC=this.props.navigation.state.params.user.photo;
+      FIRST_NAME=this.props.navigation.state.params.user.givenName;
+      LAST_NAME=this.props.navigation.state.params.user.familyName;
+      EMAIL=this.props.navigation.state.params.user.email;
+    }
+    else if (this.props.navigation.state.params && this.props.navigation.state.params.signinType==='facebook'){
+     PROFILE_PIC=this.props.navigation.state.params.result.picture.data.url;
+     FIRST_NAME=this.props.navigation.state.params.result.first_name;
+     LAST_NAME=this.props.navigation.state.params.result.last_name;
+     EMAIL=this.props.navigation.state.params.result.email;
+   }
      console.log('In Profile');
      console.log(PROFILE_PIC);
     return(
@@ -99,10 +113,14 @@ export default class Profile extends Component{
           />
 
           <FadeInView>
-          <Image
-             style={{width: 50, height: 50}}
-             source={{uri: PROFILE_PIC}}
-         />
+          <View style={{flexDirection:'row',marginRight:10,marginLeft:10,marginTop:10,marginBottom:10}}>
+              <Image
+                 style={{width: 75, height: 75,borderRadius:40}}
+                 source={{uri: PROFILE_PIC}}
+             />
+             <Text style={{fontSize:30,flex:1,fontWeight:'300',alignItems:'center',justifyContent:'center',
+           marginLeft:10,fontFamily:'Futura'}}>{FIRST_NAME+' '+LAST_NAME}</Text>
+         </View>
           <List containerStyle={styles.listitem}>
               {
                 PROFILE_DATA.map((item, i) => {
