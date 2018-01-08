@@ -115,7 +115,7 @@ export default class Profile extends Component{
           <FadeInView>
           <View style={{flexDirection:'row',marginRight:10,marginLeft:10,marginTop:10,marginBottom:10}}>
               <Image
-                 style={{width: 75, height: 75,borderRadius:40}}
+                 style={{width: 50, height: 50,borderRadius:10}}
                  source={{uri: PROFILE_PIC}}
              />
              <Text style={{fontSize:30,flex:1,fontWeight:'300',alignItems:'center',justifyContent:'center',
