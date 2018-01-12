@@ -33,6 +33,8 @@ target 'BiXi' do
       pod 'GoogleAuthUtilities'
       pod 'GoogleUtilities'
       pod 'GoogleAppUtilities'
+    pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
   end
 
   post_install do |installer|

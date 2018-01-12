@@ -8,6 +8,7 @@ const FBSDK = require('react-native-fbsdk');
 import {NavigationActions} from 'react-navigation';
 import NetworkService from '../network/NetworkService'
 import Login from './Login';
+import BiXI18N from './BiXI18N';
 const {
   LoginManager,
   LoginButton,
@@ -27,7 +28,8 @@ export default class SigninWithGF extends Component{
       email:'',
       firstname:'',
       lastname:'',
-      accessToken:''
+      accessToken:'',
+      language:'en'
     };
   }
   close(){
@@ -192,7 +194,7 @@ _signOutGoogle(){
 
             <View style={styles.container}>
                   <TouchableOpacity style={styles.button}  onPress={this._signInFaceBook.bind(this)}>
-                    <Text style={styles.buttonText}  ><Icon name="facebook" size={25} color="#3b5999" />  Continue with Facebook</Text>
+                    <Text style={styles.buttonText}  ><Icon name="facebook" size={25} color="#3b5999" />  {BiXI18N('sing_in_fb',this.state.language)}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button}  onPress={this._signInGoogle.bind(this)}>
                     <Text style={styles.buttonText}  ><Icon name="google" size={25} color="#E44134" />  Sign in with Google</Text>

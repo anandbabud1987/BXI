@@ -3,6 +3,7 @@ package com.bixi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new  MapsPackage(),
             new MainReactPackage(),
+            new RNI18nPackage(),
             new RNGoogleSigninPackage(),
             new VectorIconsPackage(),
               new FBSDKPackage(mCallbackManager)
