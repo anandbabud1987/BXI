@@ -6,6 +6,7 @@ import styles from '../SigninWithGFStyle';
 import FadeInView from './FadeInView';
 const FBSDK = require('react-native-fbsdk');
 import {NavigationActions} from 'react-navigation';
+import NetworkService from '../network/NetworkService'
 import Login from './Login';
 const {
   LoginManager,
@@ -22,7 +23,11 @@ export default class SigninWithGF extends Component{
     super(props);
     this.state = {
       username: '' ,
-      password:''
+      password:'',
+      email:'',
+      firstname:'',
+      lastname:'',
+      accessToken:''
     };
   }
   close(){
@@ -40,12 +45,26 @@ export default class SigninWithGF extends Component{
     GoogleSignin.signIn()
           .then((user) => {
             console.log(user);
-            this.setState({user: user});
-            const navigateAction=NavigationActions.navigate({
-              routeName:"Tabs",
-              params:{user:user,signinType:'google'}
-            });
-            this.props.navigation.dispatch(navigateAction);
+            this.setState({username: user.email});
+            this.setState({firstname: user.givenName});
+            this.setState({email: user.email});
+            this.setState({lastname: user.familyName});
+            this.setState({accessToken: user.accessToken});
+
+                NetworkService.doLogin(this.state)
+                  .then(data => {
+                    if(data){
+                      const navigateAction=NavigationActions.navigate({
+                        routeName:"Tabs",
+                        params:{user:user,signinType:'google'}
+                      });
+                      this.props.navigation.dispatch(navigateAction);          }
+                    else{
+                      alert("Username or Password is incorrect");
+                    }
+
+                  })
+
           })
           .catch((err) => {
             console.log('WRONG SIGNIN', err);
