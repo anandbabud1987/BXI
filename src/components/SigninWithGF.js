@@ -100,11 +100,26 @@ _signInFaceBook(){
            console.log('Error fetching data: ' + error.toString());
          } else {
            console.log(result)
-           const navigateAction=NavigationActions.navigate({
-             routeName:"Tabs",
-             params:{user:user,signinType:'facebook',result:result}
-           });
-           this.props.navigation.dispatch(navigateAction);
+           this.setState({username: result.email});
+           this.setState({firstname: result.first_name});
+           this.setState({email: result.email});
+           this.setState({lastname: result.last_name});
+           this.setState({accessToken: accessToken});
+
+               NetworkService.doLogin(this.state)
+                 .then(data => {
+                   if(data){
+                     const navigateAction=NavigationActions.navigate({
+                       routeName:"Tabs",
+                       params:{user:user,signinType:'facebook',result:result}
+                     });
+                     this.props.navigation.dispatch(navigateAction);          }
+                   else{
+                     alert("Username or Password is incorrect");
+                   }
+
+                 })
+
            console.log('Success fetching data: ' + result.toString());
          }
        }
