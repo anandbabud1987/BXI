@@ -4,14 +4,14 @@ import fr from '../i18n/fr';
 I18n.fallbacks = true;
 
 
-
 I18n.translations = {
   en,
   fr
 }
 const BiXI18N=(value,language)=>{
-  I18n.defaultLocale = "pt-BR";
-  I18n.locale = "pt-BR";
+  var languageCode='en';
+  I18n.defaultLocale = language;
+  I18n.locale = language;
   I18n.currentLocale();
   return I18n.t(value, {locale: language});
 }

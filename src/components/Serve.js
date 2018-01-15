@@ -9,11 +9,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Linking,
+  ScrollView,
   Button
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import styles from './style/CookStyle';
+import BiXI18N from './BiXI18N';
+import { FormLabel, FormInput ,FormValidationMessage,Card} from 'react-native-elements'
 export default class Serve extends Component{
 
   static navigationOptions = {
@@ -23,80 +26,62 @@ export default class Serve extends Component{
        <Icon name="free-code-camp" size={30} color={tintColor} />
      ),
    };
-  login(val){
-      this.props.navigation.navigate(val);
-  }
+
+   constructor(props){
+     super(props);
+     this.state={
+       language:'en',
+       name_of_food:''
+     };
+   }
 
   render(){
     return(
 
 
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
-      <View accessible={true}>
+      <ScrollView accessible={true}
+      
+      >
       <StatusBar
         barStyle="light-content"
         />
+        <Text style={styles.title}> {BiXI18N('cook',this.state.language)}</Text>
 
-        
-      </View>
+        <Text style={styles.text}>Name</Text>
+        <TextInput
+          style={styles.textinput}
+          underlineColorAndroid='transparent'
+          autoCorrect={false}
+
+          />
+
+          <Text style={styles.text}>Price in Rs</Text>
+          <TextInput
+            underlineColorAndroid='transparent'
+            autoCorrect={false}
+            keyboardType='numeric'
+            maxLength={5}
+
+            style={styles.textinput}
+            />
+
+            <Text style={styles.text}>Ingredients</Text>
+            <TextInput
+              multiline={true}
+              numberOfLines={4}
+              maxLength={200}
+              underlineColorAndroid='transparent'
+              autoCorrect={false}
+              maxLength={5}
+
+              style={styles.textinput}
+              />
+
+      </ScrollView>
       </KeyboardAvoidingView>
 
 
     );
   }
 }
-const styles=StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:'#FFFAFA',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:20
-  },
-  button: {
-   alignItems: 'center',
-   backgroundColor: '#2980b9',
-   padding: 10,
-   width:300,
-   height:45,
-   borderRadius:7,
-   marginBottom:27
- },
-  textinput:{
-    backgroundColor:'#F5F5F5',
-    width:300,
-    height:45,
-    textAlign:'center',
-    marginBottom:35,
-    borderRadius:10,
-    borderColor:'#d35400',
-    borderTopRightRadius:0,
-    borderBottomLeftRadius:0
-  },
-  text:{
-    textShadowColor:'#34495e',
-     color:'#fff',
-  },
-  loginTitle:{
-    textShadowColor:'#2c3e50',
-     color:'#228b22',
-     textAlign:'center',
-     fontSize:110,
-     fontWeight:'bold',
-     textShadowRadius:10
-  },
-  loginSubTitle:{
-    textShadowColor:'#27ae60',
-     color:'#c0392b',
-     textAlign:'center',
-     fontSize:25,
-     marginBottom:30,
-     fontWeight:'bold'
-  },
-  fadeIn:{
-    width:250,
-    height:50,
-    backgroundColor:'#bdc3c7',
-  }
-
-});

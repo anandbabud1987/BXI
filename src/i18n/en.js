@@ -1,4 +1,5 @@
 export default {
   "app":'BiXi',
-  "sing_in_fb":"Continue with Facebook"
+  "sing_in_fb":"Continue with Facebook",
+  "cook":"Cook"
 }
