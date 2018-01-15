@@ -41,12 +41,13 @@ export default class Serve extends Component{
 
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
       <ScrollView accessible={true}
-      
+
       >
       <StatusBar
         barStyle="light-content"
         />
         <Text style={styles.title}> {BiXI18N('cook',this.state.language)}</Text>
+        
 
         <Text style={styles.text}>Name</Text>
         <TextInput
@@ -73,10 +74,19 @@ export default class Serve extends Component{
               maxLength={200}
               underlineColorAndroid='transparent'
               autoCorrect={false}
-              maxLength={5}
 
               style={styles.textinput}
               />
+
+              <Text style={styles.text}>Delivery Fee in Rs</Text>
+              <TextInput
+                underlineColorAndroid='transparent'
+                autoCorrect={false}
+                keyboardType='numeric'
+                maxLength={3}
+
+                style={styles.textinput}
+                />
 
       </ScrollView>
       </KeyboardAvoidingView>
