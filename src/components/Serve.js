@@ -47,7 +47,7 @@ export default class Serve extends Component{
         barStyle="light-content"
         />
         <Text style={styles.title}> {BiXI18N('cook',this.state.language)}</Text>
-        
+
 
         <Text style={styles.text}>Name</Text>
         <TextInput
@@ -87,8 +87,12 @@ export default class Serve extends Component{
 
                 style={styles.textinput}
                 />
+                <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
+                  <Text style={styles.text}  >Login</Text>
+                </TouchableOpacity>
 
       </ScrollView>
+
       </KeyboardAvoidingView>
 
 
