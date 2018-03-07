@@ -56,7 +56,6 @@ export default class SigninWithGF extends Component{
                 NetworkService.doLogin(this.state)
                   .then(data => {
                     if(data){
-                      console.log(data);
                       const navigateAction=NavigationActions.navigate({
                         routeName:"Tabs",
                         params:{user:user,signinType:'google'}
@@ -112,8 +111,6 @@ _signInFaceBook(){
                NetworkService.doLogin(this.state)
                  .then(data => {
                    if(data){
-                     console.log(data);
-
                      const navigateAction=NavigationActions.navigate({
                        routeName:"Tabs",
                        params:{user:user,signinType:'facebook',result:result}
