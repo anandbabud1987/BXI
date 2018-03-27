@@ -47,31 +47,45 @@ export default class SigninWithGF extends Component{
     GoogleSignin.signIn()
           .then((user) => {
             console.log(user);
-            this.setState({username: user.email});
-            this.setState({firstname: user.givenName});
-            this.setState({email: user.email});
-            this.setState({lastname: user.familyName});
-            this.setState({accessToken: user.accessToken});
+            this._setGoogleData(user);
 
-                NetworkService.doLogin(this.state)
-                  .then(data => {
-                    if(data){
-                      const navigateAction=NavigationActions.navigate({
-                        routeName:"Tabs",
-                        params:{user:user,signinType:'google'}
-                      });
-                      this.props.navigation.dispatch(navigateAction);          }
-                    else{
-                      alert("Username or Password is incorrect");
-                    }
-
-                  })
+            //_networkLogin(); //this is a temporary comment. main implementation must be done.
+            this._goToMain();//This is a temporary workaround to make a faster development.
 
           })
           .catch((err) => {
             console.log('WRONG SIGNIN', err);
           })
           .done();
+}
+
+_setGoogleData(user){
+  this.setState({username: user.email});
+  this.setState({firstname: user.givenName});
+  this.setState({email: user.email});
+  this.setState({lastname: user.familyName});
+  this.setState({accessToken: user.accessToken});
+}
+
+_networkLogin(){
+  NetworkService.doLogin(this.state)
+    .then(data => {
+      if(data){
+        goToMain();
+      }
+      else{
+        alert("Username or Password is incorrect");
+      }
+
+    });
+}
+
+_goToMain(){
+  const navigateAction=NavigationActions.navigate({
+    routeName:"Tabs",
+    params:{user:user,signinType:'google'}
+  });
+  this.props.navigation.dispatch(navigateAction);
 }
 
 openModal(){
