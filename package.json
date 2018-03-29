@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-native": "^0.51.0",
+    "react-native-check-box": "^2.1.0",
     "react-native-elements": "^0.18.5",
     "react-native-fbsdk": "^0.6.3",
     "react-native-firebase": "^3.2.0",

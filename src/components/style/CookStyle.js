@@ -11,7 +11,7 @@ const styles=StyleSheet.create({
    alignItems: 'center',
    justifyContent:'center',
    backgroundColor: '#c23616',
-   width:300,
+   width:width-40,
    height:60,
    borderRadius:50,
    marginBottom:10,
@@ -54,7 +54,7 @@ const styles=StyleSheet.create({
    justifyContent:'center',
    backgroundColor: 'green',
    padding: 10,
-   width:300,
+width:width-40,
    height:45,
    borderRadius:10,
    marginBottom:20,
@@ -66,7 +66,7 @@ const styles=StyleSheet.create({
     ...Platform.select({
      ios: {
        backgroundColor:'white',
-       width:300,
+       width:width-40,
        height:45,
        textAlign:'left',
        marginBottom:15,
@@ -79,7 +79,7 @@ const styles=StyleSheet.create({
      },
      android: {
        backgroundColor:'white',
-       width:300,
+       width:width-40,
        height:45,
        textAlign:'left',
        marginBottom:15,
@@ -139,7 +139,7 @@ const styles=StyleSheet.create({
      fontWeight:'bold'
   },
   fadeIn:{
-    width:250,
+    width:width-40,
     height:50,
     backgroundColor:'#bdc3c7',
   },
