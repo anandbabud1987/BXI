@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { NavigationActions} from 'react-navigation';
 import styles from './style/CookStyle';
 import BiXI18N from './BiXI18N';
 import { FormLabel, FormInput ,FormValidationMessage,Card} from 'react-native-elements'
@@ -35,6 +36,14 @@ export default class Serve extends Component{
      };
    }
 
+   back(){
+     const navigateAction=NavigationActions.navigate({
+       routeName:"FoodType"
+     });
+     this.props.navigation.dispatch(navigateAction);
+   }
+
+
   render(){
     return(
 
@@ -43,10 +52,14 @@ export default class Serve extends Component{
       <ScrollView accessible={true}
 
       >
+      <View style={styles.container1}>
+      <TouchableOpacity onPress={()=>this.back()}  style={styles.closeButton} >
+        <Icon style={styles.closeButtonIcon} name='arrow-left' size={30} />
+      </TouchableOpacity>
+      </View>
       <StatusBar
         barStyle="light-content"
         />
-        <Text style={styles.title}> {BiXI18N('cook',this.state.language)}</Text>
 
 
         <Text style={styles.text}>Name</Text>
@@ -57,7 +70,7 @@ export default class Serve extends Component{
 
           />
 
-          <Text style={styles.text}>Price in Rs</Text>
+          <Text style={styles.text}>Price in </Text>
           <TextInput
             underlineColorAndroid='transparent'
             autoCorrect={false}
@@ -87,8 +100,8 @@ export default class Serve extends Component{
 
                 style={styles.textinput}
                 />
-                <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-                  <Text style={styles.text}  >Login</Text>
+                <TouchableOpacity style={styles.buttonpost}  onPress={() => this.login()}>
+                  <Text style={styles.textButton}  >Post Your Food</Text>
                 </TouchableOpacity>
 
       </ScrollView>

@@ -12,9 +12,17 @@ import {
   Button
 } from 'react-native';
 import FadeInView from './FadeInView';
+import { StackNavigator,Easing,Animated,TabNavigator,NavigationActions,StackRouter} from 'react-navigation';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 export default class FoodType extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      foodType:''
+    };
+  }
 
   static navigationOptions = {
      tabBarLabel: 'Cook',
@@ -23,7 +31,15 @@ export default class FoodType extends Component{
        <Icon name="fire" size={30} color="#228b22" />
      ),
    };
-  login(){
+  postFood(){
+    const navigateAction=NavigationActions.navigate({
+      routeName:"ServeStack",
+      params:{action:'postfood'}
+    });
+    this.props.navigation.dispatch(navigateAction);
+  }
+
+  orderFood(){
 
   }
 
@@ -33,17 +49,17 @@ export default class FoodType extends Component{
 
       <KeyboardAvoidingView behavior= {(Platform.OS === 'ios') ? 'padding':  null} style={styles.container}>
       <View accessible={true}>
-      <StatusBar
-    barStyle="light-content"
-    />
+
 
     <FadeInView>
-    <Text style={{padding:20,fontSize:25}}>What you are going to cook?</Text>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-      <Text style={styles.text}  > <Icon name="circle" size={20} color="#2ecc71" />  Veg</Text>
+    <View>
+    <Text style={{marginBottom:38,color:'#636e72',fontWeight:'bold',fontSize:40}}>What do you like?</Text>
+    </View>
+    <TouchableOpacity style={styles.buttonpost}  onPress={() => this.postFood()}>
+      <Text style={styles.text}  > Post Food</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-      <Text style={styles.text}  ><Icon name="circle" size={20} color="#c0392b" />  Non-Veg</Text>
+    <TouchableOpacity style={styles.buttonorder}  onPress={() => this.orderFood()}>
+      <Text style={styles.text}  > Order Food</Text>
     </TouchableOpacity>
       </FadeInView>
 
@@ -60,17 +76,31 @@ const styles=StyleSheet.create({
     backgroundColor:'#FFFAFA',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection:'column',
     padding:20
   },
-  button: {
+  buttonpost: {
    alignItems: 'center',
-   backgroundColor: '#2980b9',
-   padding: 10,
+   justifyContent:'center',
+   backgroundColor: '#c23616',
    width:300,
-   height:45,
-   borderRadius:7,
-   marginBottom:27
+   height:60,
+   borderRadius:50,
+   marginBottom:10,
+   marginTop:10,marginLeft:10,
+   marginRight:10
  },
+ buttonorder: {
+  alignItems: 'center',
+  justifyContent:'center',
+  backgroundColor: '#00b894',
+  width:300,
+  height:60,
+  borderRadius:50,
+  marginBottom:10,
+  marginTop:10,marginLeft:10,
+  marginRight:10
+},
   textinput:{
     backgroundColor:'#F5F5F5',
     width:300,
@@ -85,6 +115,7 @@ const styles=StyleSheet.create({
   text:{
     textShadowColor:'#34495e',
      color:'#fff',
+     fontSize:20,
   },
   loginTitle:{
     textShadowColor:'#2c3e50',

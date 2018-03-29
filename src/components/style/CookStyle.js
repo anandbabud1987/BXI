@@ -4,8 +4,20 @@ const styles=StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:'white',
-    padding:2,
+    justifyContent:'center',
+    alignItems:'center'
   },
+  buttonpost: {
+   alignItems: 'center',
+   justifyContent:'center',
+   backgroundColor: '#c23616',
+   width:300,
+   height:60,
+   borderRadius:50,
+   marginBottom:10,
+   marginTop:10,marginLeft:10,
+   marginRight:10
+ },
   header:{
     flex:1,
     backgroundColor:'white',
@@ -18,14 +30,37 @@ const styles=StyleSheet.create({
     marginRight:10,
     marginBottom:10
   },
+  container1:{
+    backgroundColor:'white',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding:1,
+  },
+  closeButtonIcon:{
+    textShadowColor:'white',
+    color:'#34495e',
+    marginLeft:0,
+    width:50,
+    height:50,
+    alignItems:'flex-start',
+    justifyContent:'flex-start',
+    backgroundColor:'white',
+    marginTop:15,
+    marginLeft:5
+
+  },
   button: {
    alignItems: 'center',
-   backgroundColor: '#2980b9',
+   justifyContent:'center',
+   backgroundColor: 'green',
    padding: 10,
    width:300,
    height:45,
-   borderRadius:7,
-   marginBottom:27
+   borderRadius:10,
+   marginBottom:20,
+   marginTop:20,
+   marginLeft:20,
+   marginRight:20
  },
   textinput:{
     ...Platform.select({
@@ -34,9 +69,10 @@ const styles=StyleSheet.create({
        width:300,
        height:45,
        textAlign:'left',
-       marginBottom:35,
+       marginBottom:15,
        marginLeft:15,
-       marginRight:35,
+       marginRight:15,
+       marginTop:15,
        borderColor:'#d35400',
        borderWidth:0,
        borderBottomWidth:1
@@ -46,9 +82,10 @@ const styles=StyleSheet.create({
        width:300,
        height:45,
        textAlign:'left',
-       marginBottom:35,
+       marginBottom:15,
        marginLeft:15,
-       marginRight:35,
+       marginRight:15,
+       marginTop:15,
        borderColor:'#d35400',
        borderWidth:0,
        borderBottomWidth:1
@@ -65,6 +102,11 @@ const styles=StyleSheet.create({
     marginLeft:10,
     fontFamily:'Futura'
   },
+  textButton:{
+    textShadowColor:'#34495e',
+     color:'#fff',
+     fontSize:20,
+  },
   item: {
     padding: 10,
     height: 50,
@@ -78,12 +120,15 @@ const styles=StyleSheet.create({
   title:{
     textShadowColor:'#2c3e50',
      color:'#228b22',
-     textAlign:'left',
-     fontSize:40,
+     textAlign:'center',
+     fontSize:25,
      fontWeight:'300',
      fontFamily:'Futura',
      textShadowRadius:10,
-     padding:2
+     marginBottom:10,
+     marginTop:10,
+     marginLeft:10,
+     marginRight:10
   },
   loginSubTitle:{
     textShadowColor:'#27ae60',
