@@ -1,1 +1,5 @@
-../../../../GoogleSignIn/Frameworks/GoogleSignIn.framework/Headers/GoogleSignIn.h
+#import "GIDAuthentication.h"
+#import "GIDGoogleUser.h"
+#import "GIDProfileData.h"
+#import "GIDSignIn.h"
+#import "GIDSignInButton.h"

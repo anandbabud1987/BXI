@@ -1,1 +1,5 @@
-../../../../FirebaseCore/Frameworks/FirebaseCore.framework/Headers/FirebaseCore.h
+#import "FIRAnalyticsConfiguration.h"
+#import "FIRApp.h"
+#import "FIRConfiguration.h"
+#import "FIRLoggerLevel.h"
+#import "FIROptions.h"
