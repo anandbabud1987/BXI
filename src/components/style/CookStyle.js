@@ -18,6 +18,16 @@ const styles=StyleSheet.create({
    marginTop:10,marginLeft:10,
    marginRight:10
  },
+ addphoto: {
+  alignItems: 'center',
+  justifyContent:'center',
+  backgroundColor: 'silver',
+  width:width-40,
+  height:200,
+  marginBottom:10,
+  marginTop:10,marginLeft:10,
+  marginRight:10
+},
   header:{
     flex:1,
     backgroundColor:'white',

@@ -62,6 +62,9 @@ export default class Serve extends Component{
         barStyle="light-content"
         />
 
+        <TouchableOpacity style={styles.addphoto}  onPress={() => this.login()}>
+          <Text style={styles.textButton}  ><Icon name="plus" size={25} color="#3b5999" /> Add Photo</Text>
+        </TouchableOpacity>
 
         <Text style={styles.text}>Name</Text>
         <TextInput
@@ -70,6 +73,7 @@ export default class Serve extends Component{
           autoCorrect={false}
 
           />
+
 
           <Text style={styles.text}>Price in </Text>
           <TextInput
@@ -121,7 +125,7 @@ export default class Serve extends Component{
                     style={styles.textinput}
                     />
 
-                  
+
                 <View style={{flex:3,justifyContent:'space-between'}}>
                 <TouchableOpacity style={styles.buttonpost}  onPress={() => this.login()}>
                   <Text style={styles.textButton}  >Post Your Food</Text>
