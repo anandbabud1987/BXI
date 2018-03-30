@@ -14,9 +14,11 @@ import {
 } from 'react-native';
 import FadeInView from './FadeInView';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { NavigationActions} from 'react-navigation';
 import styles from './style/CookStyle';
 import BiXI18N from './BiXI18N';
-import { FormLabel, FormInput ,FormValidationMessage,Card} from 'react-native-elements'
+import { FormLabel, FormInput ,FormValidationMessage,Card} from 'react-native-elements';
+import CheckBox from 'react-native-check-box';
 export default class Serve extends Component{
 
   static navigationOptions = {
@@ -35,6 +37,14 @@ export default class Serve extends Component{
      };
    }
 
+   back(){
+     const navigateAction=NavigationActions.navigate({
+       routeName:"FoodType"
+     });
+     this.props.navigation.dispatch(navigateAction);
+   }
+
+
   render(){
     return(
 
@@ -43,11 +53,18 @@ export default class Serve extends Component{
       <ScrollView accessible={true}
 
       >
+      <View style={styles.container1}>
+      <TouchableOpacity onPress={()=>this.back()}  style={styles.closeButton} >
+        <Icon style={styles.closeButtonIcon} name='arrow-left' size={30} />
+      </TouchableOpacity>
+      </View>
       <StatusBar
         barStyle="light-content"
         />
-        <Text style={styles.title}> {BiXI18N('cook',this.state.language)}</Text>
 
+        <TouchableOpacity style={styles.addphoto}  onPress={() => this.login()}>
+          <Text style={styles.textButton}  ><Icon name="plus" size={25} color="#3b5999" /> Add Photo</Text>
+        </TouchableOpacity>
 
         <Text style={styles.text}>Name</Text>
         <TextInput
@@ -57,7 +74,8 @@ export default class Serve extends Component{
 
           />
 
-          <Text style={styles.text}>Price in Rs</Text>
+
+          <Text style={styles.text}>Price in </Text>
           <TextInput
             underlineColorAndroid='transparent'
             autoCorrect={false}
@@ -78,7 +96,7 @@ export default class Serve extends Component{
               style={styles.textinput}
               />
 
-              <Text style={styles.text}>Delivery Fee in Rs</Text>
+              <Text style={styles.text}>Delivery Fee</Text>
               <TextInput
                 underlineColorAndroid='transparent'
                 autoCorrect={false}
@@ -87,9 +105,32 @@ export default class Serve extends Component{
 
                 style={styles.textinput}
                 />
-                <TouchableOpacity style={styles.button}  onPress={() => this.login()}>
-                  <Text style={styles.text}  >Login</Text>
+
+                <Text style={styles.text}>Address to Pick (If pickup only)</Text>
+                <TextInput
+                  underlineColorAndroid='transparent'
+                  autoCorrect={false}
+                  maxLength={200}
+                  multiline={true}
+                  numberOfLines={4}
+                  style={styles.textinput}
+                  />
+                  <Text style={styles.text}>Availability</Text>
+                  <TextInput
+                    underlineColorAndroid='transparent'
+                    autoCorrect={false}
+                    maxLength={200}
+                    multiline={true}
+                    numberOfLines={4}
+                    style={styles.textinput}
+                    />
+
+
+                <View style={{flex:3,justifyContent:'space-between'}}>
+                <TouchableOpacity style={styles.buttonpost}  onPress={() => this.login()}>
+                  <Text style={styles.textButton}  >Post Your Food</Text>
                 </TouchableOpacity>
+                </View>
 
       </ScrollView>
 

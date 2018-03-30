@@ -10,7 +10,8 @@ export default class FadeInView extends Component{
       this.state.fadeAnim,
       {
         toValue:1,
-         duration: 1000,
+        duration: 400,
+        useNativeDriver: true,
     }).start();
   }
   render(){

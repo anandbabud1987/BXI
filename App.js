@@ -37,14 +37,14 @@ const tabBarOptions = Platform.OS === 'ios' ?
       height:50
     },
     activeTintColor: 'red',
-    activeBackgroundColor:'black',
+    activeBackgroundColor:'silver',
     labelStyle: {
               fontSize: 12,
               fontFamily:'Futura',
-              color:'silver'
+              color:'gray'
         },
     style:{
-      backgroundColor:'black'
+      backgroundColor:'silver'
     }
   } : {
     // Android tabBarOptions
@@ -55,14 +55,14 @@ const tabBarOptions = Platform.OS === 'ios' ?
       height:40
     },
     activeTintColor: 'red',
-    activeBackgroundColor:'black',
+    activeBackgroundColor:'silver',
     labelStyle: {
               fontSize: 12,
               fontFamily:'Futura',
-              color:'silver'
+              color:'gray'
         },
     style:{
-      backgroundColor:'black',
+      backgroundColor:'silver',
       //sheight:80
     }
   }
@@ -119,13 +119,18 @@ const  BixiNavigator= StackNavigator(
       screen:FoodType,
       path:'/bix/foodtype',
       key:'foodtype'
-    }
+    },
+    ServeStack: {
+      screen: Serve,
+      path:'/bixi/tabs/serve-stack',
+      key:'servestack'
+    },
   }
   ,
   {
     headerMode: 'none',
     mode: 'modal',
-    initialRouteName: 'SigninWithGF',
+    initialRouteName: 'FoodType',
   }
 );
 
